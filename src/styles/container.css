@@ -1,0 +1,81 @@
+.container {
+    width: 86vw;
+    height: 80vh;
+    border: 2px black solid;
+    margin-left: 6.3%;
+    margin-top: 1%;
+    display: flex
+}
+.left_ul {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+    overflow: auto;
+    max-height: 300px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  }
+li {
+    text-decoration: underline;
+    width: fit-content;
+}
+li:hover {
+    color:white;
+    background: red;
+    width: 100%;
+    padding: 0;
+    text-decoration: none;
+}
+.liSpan {
+    margin-left: 5px;
+}
+.cardSpan {
+    font-weight: bolder;
+}
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    width: 40%;
+    height: fit-content;
+    margin: 16px;
+    margin-left: 7%;
+}
+.card2 {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    width: 20%;
+    height: fit-content;
+    margin: 16px;
+    margin-left: 8%;
+    text-align: center;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+  
+.honda {
+    text-decoration: underline;
+    padding: 0;
+    display: list-item;
+    list-style-position: inside;
+}
+.honda::marker {
+    color: red;
+    font-size: 12px;
+}
+.honda:hover {
+    width: 100%;
+    padding: 0;
+    text-decoration: none;
+}
+.hondaSpan {
+    margin-right: 5px;
+}
