@@ -2,6 +2,7 @@
 
 In the project directory, you can run:
 
+REACT FRONTEND SERVER
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -19,3 +20,9 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+PYTHON BACKEND SERVER
+### `uvicorn <python app file name>:app --reload`
+
+This runs the python fastapi backend server locally
+-Go to python dir and then run this command, uvicorn fastApi:app --reload

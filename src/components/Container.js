@@ -46,7 +46,7 @@ const Container = () => {
   const [response, setResponseData] = useState(null);
 
   const getMotoData = async () => {
-    const response = await axios.get('http://localhost:5000/api/motos');
+    const response = await axios.get('http://localhost:8000/api/getMoto');
     setResponseData(response.data);
   };
   useEffect(() => {

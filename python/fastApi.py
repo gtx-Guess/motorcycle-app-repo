@@ -1,7 +1,16 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import databaseQueries
 app = FastAPI()
+origins = ["*"]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.get('/')
 def home():
   return 'This is home page'
@@ -12,6 +21,11 @@ async def getMotosFrom():
     return resp
 
 @app.get('/api/getMoto')
+async def getMotoFromDb():
+  resp = databaseQueries.getMotorcycleFromDb()
+  return resp[0]
+
+@app.get('/api/staticMoto')
 def getMoto():
     motos = {
       "id": 4,
