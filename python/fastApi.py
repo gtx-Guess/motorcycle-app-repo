@@ -35,4 +35,4 @@ def getMoto():
       "motoImage": '1GQNfUrMIK7uvfBlxgiLzr6mLd4Fnl3sg'
     }
     return motos
-#uvicorn api2:app --reload
+#uvicorn fastApi:app --reload
