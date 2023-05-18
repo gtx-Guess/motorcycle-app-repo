@@ -1,54 +1,19 @@
-// import styles from '../styles/container.module.css'
 import '../styles/container.css'
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const stages = {
-  dev: 'dev',
-  prod: 'prod'
-}
-const stage = stages.dev;
-
 const Container = () => {
   const containerRef = useRef(null);
-  const [motos, setMotos] = useState([
-    {
-      id: 1,
-      name: "Honda",
-      year: "2008",
-      cc: "600",
-      motoImage: '1G2wBbIqy7O_wUtS4tbk_aQjv3hqM8eOq',
-      data: {
-        top: '160',
-        time: '3.28',
-        hp: '118',
-        torque: '66 Nm',
-        seat: '32.3 in',
-        dry: '345 lb',
-        wet: '410 lb'
-      }
-    },
-    {
-      id: 2,
-      name: "Kawasaki",
-      year: "2021",
-      cc: "1000",
-      motoImage: '1MwIXs2s9v9D8d8g8r1RySsep5EzYyFHF'
-    },
-    {
-      id: 3,
-      name: "Harley-Davidson",
-      year: "2019",
-      cc: "1200",
-      motoImage: '1GFmZKQP26j51kxA8ON3NUPkx6zLgCsXV'
-    }
-  ]);
-  const [response, setResponseData] = useState(null);
+  const [response, setResponseData] = useState([]);
+  const [motos, setMotos] = useState([]);
 
   const getMotoData = async () => {
-    const response = await axios.get('http://localhost:8000/api/getMoto');
-    setResponseData(response.data);
+    const response = await axios.get('http://localhost:8000/api/getMotos');
+    let resp = [...response.data]
+    resp = resp.sort(function(a,b){ return a["brand"].localeCompare(b["brand"]); });
+    setMotos([...resp]);
   };
+
   useEffect(() => {
     getMotoData();
   }, []);
@@ -86,9 +51,17 @@ const Container = () => {
     }
   };
 
+  /**
+   * this currently doesnt work as expected
+   * it will grab the new response data and the motos list but then will merge them together
+   * maybe try to use a set to have it filter dupes?
+  */
   const addMoto = () => {
     return () => {
-      setMotos([...motos, response])
+      console.log(response);
+      let resp = [...motos, ...response]
+      resp = resp.sort(function(a,b){ return a["brand"].localeCompare(b["brand"]); });
+      setMotos([...motos, ...resp]);
     }
   };
 
@@ -96,34 +69,13 @@ const Container = () => {
     <div id="main-container" className='container' ref={containerRef}>
       <ul id="left-list" className='left_ul'>
         {motos.map((moto) => {
-            return(
-              <li key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
-                <span className='liSpan'>{moto.name}</span>
-              </li>
-            )
-            //[ if(stage === 'dev'){
-            //   if(moto.name === 'Honda'){
-            //     return (
-            //       <ul className='honda' key={moto.id} id={moto.id} onClick={click2(response)}>
-            //         <span className='liSpan'>{moto.name}</span>
-            //       </ul>
-            //     );
-            //   }else{
-            //     return(
-            //     <li key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
-            //       <span className='liSpan'>{moto.name}</span>
-            //     </li>
-            //   )}
-            // }else{
-            //   return(
-            //     <li key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
-            //       <span className='liSpan'>{moto.name}</span>
-            //     </li>
-            //   )
-            // };]
+          return(
+            <li key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
+              <span className='liSpan'>{moto.name}</span>
+            </li>)
         })}
-        <br/><br/><br/>
-        <li onClick={addMoto()}>Add moto</li>
+        <br/><br/>
+        {/* <li onClick={addMoto()}>Add moto</li> */}
       </ul>
     </div>
   );
