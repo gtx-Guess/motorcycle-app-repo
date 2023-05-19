@@ -1,24 +1,25 @@
 const Motorcycles = ({ props }) => {
     const containerRef = props[1];
     const motoList = props[0];
-
+    const basePictureUrl = "https://wpddzvhmokvspeaundby.supabase.co/storage/v1/object/public/Motorcycle%20Pictures/";
+    
     const handleClick = (moto) => {
         console.log(moto);
         const activeCards = containerRef.current.querySelectorAll('.active');
         activeCards.forEach((card) => card.remove());
-      
+
         const card1El = document.createElement('div');
         card1El.classList.add('card', 'active');
         card1El.id = `${moto.name}_card`;
         card1El.innerHTML = `
-          <p><span class="cardSpan">Brand:</span> ${moto.brand}</p>
-          <p><span class="cardSpan">Name:</span> ${moto.name}</p>
-          <p><span class="cardSpan">Year:</span> ${moto.year}</p>
-          <p><span class="cardSpan">Engine:</span> ${moto.cc} CC's</p>
-          <img src="https://drive.google.com/uc?export=view&id=${moto.motoImage}" alt="${moto.name}" />
+            <p><span class="cardSpan">Brand:</span> ${moto.brand}</p>
+            <p><span class="cardSpan">Name:</span> ${moto.name}</p>
+            <p><span class="cardSpan">Year:</span> ${moto.year}</p>
+            <p><span class="cardSpan">Engine:</span> ${moto.cc} CC's</p>
+            <img src="${basePictureUrl}${moto.motoImage}" alt="${moto.name}" />
         `;
         containerRef.current.appendChild(card1El);
-    
+
         if(moto.data){
           const card2El = document.createElement('div');
           card2El.classList.add('card2','active');
