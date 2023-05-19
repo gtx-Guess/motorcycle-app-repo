@@ -1,18 +1,23 @@
 import '../styles/container.css'
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
+import FilterButton from './FilterButton';
+import RemoveFilterButton from './RemoveFilterButton';
 
 const Container = () => {
   const containerRef = useRef(null);
-  const [motos, setMotos] = useState([]);
+  const [motoList, motoSetter] = useState([]);
 
   const getMotoData = async () => {
     const response = await axios.get('http://localhost:8000/api/getMotos');
     let resp = [...response.data]
     resp = resp.sort((a,b) => ( a["brand"].localeCompare(b["brand"]) ));
-    setMotos([...resp]);
+    motoSetter([...resp]);
   };
 
+  /**
+   * Pretty sure below useEffect block makes runs the getMotoData func on page load
+   */
   useEffect(() => {
     getMotoData();
   }, []);
@@ -51,27 +56,12 @@ const Container = () => {
     }
   };
 
-  const filterMotos = () => {
-    return () => {
-      console.log('Filter button clicked!');
-      let filtered = motos.filter( (moto) => (moto.brand === 'Honda'));
-      setMotos([...filtered]);
-    }
-  };
-
-  const removeFilter = () => {
-    return () => {
-      console.log('remove filter button clicked!');
-      getMotoData();
-    }
-  }
-
   return (
     <div id="main-container" className='container' ref={containerRef}>
       <ul id="left-list" className='left_ul'>
-        <li id='filter' onClick={filterMotos()}> filter button </li>
-        <li id='removeFilter' onClick={removeFilter()}>remove filter</li><br/>
-        {motos.map((moto) => {
+        <FilterButton motoProps={[motoList, motoSetter]}/>
+        <RemoveFilterButton getMotoData={getMotoData}/><br/>
+        {motoList.map((moto) => {
           return(
             <li key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
               <span className='liSpan'>{moto.name}</span>
