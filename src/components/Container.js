@@ -4,13 +4,12 @@ import axios from 'axios';
 
 const Container = () => {
   const containerRef = useRef(null);
-  const [response, setResponseData] = useState([]);
   const [motos, setMotos] = useState([]);
 
   const getMotoData = async () => {
     const response = await axios.get('http://localhost:8000/api/getMotos');
     let resp = [...response.data]
-    resp = resp.sort(function(a,b){ return a["brand"].localeCompare(b["brand"]); });
+    resp = resp.sort((a,b) => ( a["brand"].localeCompare(b["brand"]) ));
     setMotos([...resp]);
   };
 
@@ -27,7 +26,8 @@ const Container = () => {
     card1El.classList.add('card', 'active');
     card1El.id = `${moto.name}_card`;
     card1El.innerHTML = `
-      <p><span class="cardSpan">Brand:</span> ${moto.name}</p>
+      <p><span class="cardSpan">Brand:</span> ${moto.brand}</p>
+      <p><span class="cardSpan">Name:</span> ${moto.name}</p>
       <p><span class="cardSpan">Year:</span> ${moto.year}</p>
       <p><span class="cardSpan">Engine:</span> ${moto.cc} CC's</p>
       <img src="https://drive.google.com/uc?export=view&id=${moto.motoImage}" alt="${moto.name}" />
@@ -51,31 +51,32 @@ const Container = () => {
     }
   };
 
-  /**
-   * this currently doesnt work as expected
-   * it will grab the new response data and the motos list but then will merge them together
-   * maybe try to use a set to have it filter dupes?
-  */
-  const addMoto = () => {
+  const filterMotos = () => {
     return () => {
-      console.log(response);
-      let resp = [...motos, ...response]
-      resp = resp.sort(function(a,b){ return a["brand"].localeCompare(b["brand"]); });
-      setMotos([...motos, ...resp]);
+      console.log('Filter button clicked!');
+      let filtered = motos.filter( (moto) => (moto.brand === 'Honda'));
+      setMotos([...filtered]);
     }
   };
+
+  const removeFilter = () => {
+    return () => {
+      console.log('remove filter button clicked!');
+      getMotoData();
+    }
+  }
 
   return (
     <div id="main-container" className='container' ref={containerRef}>
       <ul id="left-list" className='left_ul'>
+        <li id='filter' onClick={filterMotos()}> filter button </li>
+        <li id='removeFilter' onClick={removeFilter()}>remove filter</li><br/>
         {motos.map((moto) => {
           return(
             <li key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
               <span className='liSpan'>{moto.name}</span>
             </li>)
         })}
-        <br/><br/>
-        {/* <li onClick={addMoto()}>Add moto</li> */}
       </ul>
     </div>
   );

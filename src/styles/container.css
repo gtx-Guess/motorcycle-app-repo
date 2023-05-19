@@ -60,16 +60,11 @@ img {
     width: 100%;
     height: auto;
 }
-  
 .honda {
     text-decoration: underline;
     padding: 0;
     display: list-item;
     list-style-position: inside;
-}
-.honda::marker {
-    color: red;
-    font-size: 12px;
 }
 .honda:hover {
     width: 100%;
