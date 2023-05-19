@@ -7,6 +7,7 @@ import Motorcycles from './Motorcycles';
 
 const Container = () => {
   const containerRef = useRef(null);
+  const contBottom = useRef(null);
   const [motoList, motoSetter] = useState([]);
 
   const getMotoData = async () => {
@@ -23,13 +24,21 @@ const Container = () => {
     getMotoData();
   }, []);
 
+  const styles = {
+    backgroundColor: "lightblue"
+  }
+
   return (
     <div id="main-container" className='container' ref={containerRef}>
-      <ul id="left-list" className='left_ul'>
+      <div id='container-top' style={styles}>          
         <FilterButton motoProps={[motoList, motoSetter]}/>
-        <RemoveFilterButton getMotoData={getMotoData}/><br/>
-        <Motorcycles props={[motoList, containerRef]} />
-      </ul>
+      </div>
+      <div id='container-bottom' className='container-bottom' ref={contBottom}>
+        <ul id="left-list" className='left_ul'>
+          <RemoveFilterButton getMotoData={getMotoData}/><br/>
+          <Motorcycles props={[motoList, contBottom]} />
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import '../styles/button.css'
 const FilterButton = ({ motoProps }) => {
     let motoSetter = motoProps[1];
     let motoList = motoProps[0];
@@ -11,7 +12,8 @@ const FilterButton = ({ motoProps }) => {
     };
 
     return (
-        <li id="filter-button" onClick={filterClicked()}>filter button</li>
+        <button id="filter-button"
+        className='button' onClick={filterClicked()}>filter button</button>
     );
 
 };
