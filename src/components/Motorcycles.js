@@ -4,7 +4,6 @@ const Motorcycles = ({ props }) => {
     const basePictureUrl = "https://wpddzvhmokvspeaundby.supabase.co/storage/v1/object/public/Motorcycle%20Pictures/";
     
     const handleClick = (moto) => {
-        console.log(moto);
         const activeCards = containerRef.current.querySelectorAll('.active');
         activeCards.forEach((card) => card.remove());
 
