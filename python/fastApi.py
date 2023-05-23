@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import databaseQueries
 app = FastAPI()
@@ -11,9 +12,26 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+'''
+The class below creates an api object type that inherts from the "BaseModel" class,
+in this case its creating a form data object type that the "/submit" endpoint will be expecting
+'''
+class FormData(BaseModel):
+    brand_type: str
+
+@app.post('/submit')
+async def formSubmission(form_data: FormData):
+  print("endpoint hit!")
+  brand_type = form_data.brand_type
+  print(f"Brand type from form submission in react: {brand_type}")
+  return {"message" : "Form submitted successfully"}
+
+
 @app.get('/')
 def home():
   return 'This is home page'
+
 
 @app.get('/api/getMotos')
 async def getMotosFrom():
