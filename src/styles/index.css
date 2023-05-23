@@ -1,5 +1,5 @@
 html{
-  overflow: auto;
+  overflow: scroll;
 }
 body {
   margin: 0;

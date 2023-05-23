@@ -11,10 +11,11 @@ const Motorcycles = ({ props }) => {
         card1El.classList.add('card', 'active');
         card1El.id = `${moto.name}_card`;
         card1El.innerHTML = `
+            <div>
             <p><span class="cardSpan">Brand:</span> ${moto.brand}</p>
             <p><span class="cardSpan">Name:</span> ${moto.name}</p>
             <p><span class="cardSpan">Year:</span> ${moto.year}</p>
-            <p><span class="cardSpan">Engine:</span> ${moto.cc} CC's</p>
+            <p><span class="cardSpan">Engine:</span> ${moto.cc} CC's</p></div>
             <img src="${basePictureUrl}${moto.motoImage}" alt="${moto.name}" />
         `;
         containerRef.current.appendChild(card1El);
@@ -24,7 +25,7 @@ const Motorcycles = ({ props }) => {
           card2El.classList.add('card2','active');
           card2El.id = `${moto.name}_card2`;
           card2El.innerHTML = `
-            <p><span class="cardSpan">Top Speed:</span> ${moto.data.top}</p>
+            <p><span class="cardSpan">Top Speed:</span>${moto.data.top}</p>
             <p><span class="cardSpan">0-60:</span> ${moto.data.time}</p>
             <p><span class="cardSpan">Horse Power:</span> ${moto.data.hp}</p>
             <p><span class="cardSpan">Torque:</span> ${moto.data.torque}</p>
@@ -46,7 +47,7 @@ const Motorcycles = ({ props }) => {
         <div style={styles}>
             {motoList.map((moto) => {
                 return(
-                <li key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
+                <li className="motoLi" key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
                     <span className='liSpan'>{moto.name}</span>
                 </li>)
             })}
