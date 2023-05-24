@@ -25,6 +25,8 @@ const Container = () => {
 
   const toggleModal = () => {
       const form = document.getElementById('moto-form-modal-div');
+      const blur = document.getElementById('background-blur');
+      blur.classList.toggle('hide-moto-modal');
       form.classList.toggle('hide-moto-modal');
   };
   return (
