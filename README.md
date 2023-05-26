@@ -26,3 +26,4 @@ PYTHON BACKEND SERVER
 
 This runs the python fastapi backend server locally
 -Go to python dir and then run this command, uvicorn fastApi:app --reload
+    may have to run python or python3 -m vicorn fastApi:app --reload
