@@ -35,7 +35,6 @@ const MotoForm = ({ props }) => {
                 </form>
                 <span className="close" onClick={toggleModal}>&times;</span>
             </div>
-            <div className='attachment-box'>drop picture here</div>
         </div>
     );
 };
