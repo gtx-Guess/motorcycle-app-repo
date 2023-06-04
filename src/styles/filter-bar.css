@@ -1,12 +1,13 @@
 .filter-bar{
-    background-color: rgb(207, 237, 246);
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    /* background-color: rgb(207, 237, 246); */
+    /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); */
+    background-color: #383838c2;
     display: flex;
     flex-direction: row;
     justify-content: right;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 80px;
     overflow: hidden;
     max-width: none;
 }
@@ -16,14 +17,13 @@
 .button {
     height: fit-content;
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    background-color: #78c9ff;
+    background-color: #133a61;
     color: #ffffff;
     border: none;
-    border-radius: 20px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
     cursor: pointer;
@@ -47,20 +47,20 @@ div > label {
     height: fit-content;
     padding: 6.4px 12px;
     margin-right: 10px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    background-color: #78c9ff;
     color: #ffffff;
     border: none;
-    border-radius: 20px;
+    background-color: #133a61;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 select{
     cursor: pointer;
     border: none;
     border-radius: 20px;
+    font-size: 16px;
 }
 .select-2, .select-3{
     width: 80px;

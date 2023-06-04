@@ -4,17 +4,9 @@ form{
     min-width: fit-content;
     max-width: 400px;
 }
-.attachment-box{
-    position: absolute;
-    top: 25%;
-    left: 55%;
-    padding: 5% 8% 10% 8%;
-    border: 3px dashed black;
-    z-index: 1;
-}
 .moto-form{
     position: absolute;
-    top: 55%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #f09999;
@@ -49,7 +41,7 @@ form{
     position: absolute;
     background: rgba(0, 0, 0, 0.77);
     padding-top: 6%;
-    top: 10.5%;
+    top: 21.5%;
     left: 0%;
     height: 100%;
     width: 100%;
