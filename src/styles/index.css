@@ -1,6 +1,7 @@
 html{
   overflow: scroll;
   background-image: url("../static/asphalt_background.jpeg");
+  background-color: rgb(48, 48, 48);
 }
 body {
   margin: 0;

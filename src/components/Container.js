@@ -16,9 +16,6 @@ const Container = () => {
     motoSetter([...resp]);
   };
 
-  /**
-   * Pretty sure below useEffect hook runs the getMotoData func on page load
-   */
   useEffect(() => {
     getMotoData();
   }, []);
@@ -38,8 +35,10 @@ const Container = () => {
           <br/>
           <Motorcycles props={[motoList, contBottom]}/>
           <br/><br/><br/>
-          <li className={'add-moto-li'} onClick={toggleModal}>Add Moto</li>
-          <li className={'add-moto-li'}>Delete Moto</li>
+          <span style={{ position: 'sticky', top: '86%' }}>
+            <li className={'add-moto-li'} onClick={toggleModal}>Add Moto</li>
+            <li className={'add-moto-li'}>Delete Moto</li>
+          </span>
         </ul>
       </div>
     </div>

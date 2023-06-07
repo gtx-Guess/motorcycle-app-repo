@@ -4,17 +4,21 @@ import '../styles/moto-form.css';
 
 const MotoForm = ({ props }) => {
     const toggleModal = props[0];
-    const [brandType, setBrandType] = useState('Honda');
+    const [brandType, setBrandType] = useState('');
     async function formSubmit (event) {
         event.preventDefault();
-        const requestBody = {brand_type: brandType};
-        const resp = await axios.post('http://localhost:8000/submit', requestBody);
+        if(brandType != ''){
+            const requestBody = {brand_type: brandType};
+            const resp = await axios.post('http://localhost:8000/submit', requestBody);
 
-        if(resp.status === 200){
-            console.log('Form Submit successfully');
+            if(resp.status === 200){
+                console.log('Form Submit successfully');
+            }else{
+                console.log(`Form didnt go through, status code: ${resp.status}`);
+            };
         }else{
-            console.log(`Form didnt go through, status code: ${resp.status}`);
-        };
+            alert('No brand type');
+        }
     };
 
     const handleBrandTypeChange = (event) => {
@@ -26,7 +30,7 @@ const MotoForm = ({ props }) => {
             <div id='moto-form-div' className={'moto-form'}>
                 <form id='moto-form'>
                     <label htmlFor="brand_type">Brand:</label>
-                    <input id='brand_type' placeholder='please type brand...'/>
+                    <input onChange={handleBrandTypeChange} id='brand_type' placeholder='please type brand...'/>
                     <label htmlFor='engine-size'>Engine Size:</label>
                     <input id='engine-size' placeholder='please type engine size in cc...'/>
                     <label htmlFor='moto-year'>Year:</label>
