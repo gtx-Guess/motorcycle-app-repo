@@ -1,6 +1,37 @@
-.main{
-    border: 2px lightblue dashed;
-    width: 86vw;
-    height: 190px;
-    margin: 2% 6.3% 5% 6.3%;
+.motoGalleryMain{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 80px;
+    margin: 2% 6.3% 5% 0;
+    background-color: #383838c2;
+    border: 2px black solid;
+}
+
+.motoGalleryMain img{
+    height: 60px;
+    width: auto;
+    background: transparent;
+    transition: .7s;
+}
+
+.motoGalleryMain img:hover{
+    position: relative;
+    transform: scale(2.5);
+    transition: .7s;
+}
+
+.reactBubble {
+    transition: .7s;
+    display: flex;
+    position: relative;
+    background: white;
+    align-items: center;
+    justify-content: center;
+    bottom: 101px;
+    right: 67px;
+    width: 163px;
+    height: 65px;
+    border-radius: 150px 2px;
 }
