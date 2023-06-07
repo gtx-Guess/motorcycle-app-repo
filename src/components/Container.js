@@ -30,16 +30,16 @@ const Container = () => {
       form.classList.toggle('hide-moto-modal');
   };
   return (
-    <div id="main-container" className='container' ref={containerRef}>      
+    <div id="main-container" className={'container'} ref={containerRef}>      
       <FilterBar motoList={motoList}/>
       <MotoForm props={[toggleModal]}/>
-      <div id='container-bottom' className='container-bottom' ref={contBottom}>
-        <ul id="left-list" className='left_ul' >
+      <div id='container-bottom' className={'container-bottom'} ref={contBottom}>
+        <ul id="left-list" className={'left_ul'} >
           <br/>
           <Motorcycles props={[motoList, contBottom]}/>
           <br/><br/><br/>
-          <li className='add-moto-li' onClick={toggleModal}>Add Moto</li>
-          <li className='add-moto-li'>Delete Moto</li>
+          <li className={'add-moto-li'} onClick={toggleModal}>Add Moto</li>
+          <li className={'add-moto-li'}>Delete Moto</li>
         </ul>
       </div>
     </div>

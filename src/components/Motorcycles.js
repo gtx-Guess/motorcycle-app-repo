@@ -47,8 +47,8 @@ const Motorcycles = ({ props }) => {
         <div style={styles}>
             {motoList.map((moto) => {
                 return(
-                <li className="motoLi" key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
-                    <span className='liSpan'>{moto.name}</span>
+                <li className={"motoLi"} key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
+                    <span className={'liSpan'}>{moto.name}</span>
                 </li>)
             })}
         </div>

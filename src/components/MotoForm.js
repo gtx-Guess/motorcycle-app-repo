@@ -22,8 +22,8 @@ const MotoForm = ({ props }) => {
     };
 
     return (
-        <div id='moto-form-modal-div' className='hide-moto-modal'>
-            <div id='moto-form-div' className='moto-form'>
+        <div id='moto-form-modal-div' className={'hide-moto-modal'}>
+            <div id='moto-form-div' className={'moto-form'}>
                 <form id='moto-form'>
                     <label htmlFor="brand_type">Brand:</label>
                     <input id='brand_type' placeholder='please type brand...'/>
@@ -33,7 +33,7 @@ const MotoForm = ({ props }) => {
                     <input id='moto-year' placeholder='please type year...'/>
                     <input type="submit" value="Submit" onClick={formSubmit}/>
                 </form>
-                <span className="close" onClick={toggleModal}>&times;</span>
+                <span className={"close"} onClick={toggleModal}>&times;</span>
             </div>
         </div>
     );
