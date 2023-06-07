@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import '../styles/techGallery.css';
 import reactLogo from '../static/react_logo.png';
 import githubLogo from '../static/gh_logo3.png';
@@ -9,12 +11,26 @@ const TechGallery = () => {
 
     return(
         <div className={'techGalleryMain'}>
+            <FontAwesomeIcon icon={faArrowRight} beat className={'arrow'}/>
             <img className={'techGalleryMainImg'} src={reactLogo}/>
-            <p id='reactBubble' className='popup'>this is for react</p>
-            <img className={'techGalleryMainImg'} src={githubLogo}/>
+            <p id='reactBubble' className={'popup reactBubble'}>React for the frontend</p>
+
+            <a href='https://github.com/gtx-Guess/motorcycle-app-repo' target="_blank">
+                <div>
+                    <img className={'techGalleryMainImg'} src={githubLogo}/>
+                    <p id='ghBubble' className={'popup ghBubble'}>Click the cat for the github repo!</p>
+                </div>
+            </a>
+
             <img className={'techGalleryMainImg'} src={nodeLogo}/>
+            <p id='nodeBubble' className={'popup nodeBubble'}>Javascript/node for development</p>
+
             <img className={'techGalleryMainImg'} src={pythonLogo}/>
+            <p id='pyBubble' className={'popup pyBubble'}>Python for the backend to create REST Api</p>
+
             <img className={'techGalleryMainImg'} src={supaBaseLogo}/>
+            <p id='sbBubble' className={'popup sbBubble'}>SupaBase for cloud storage and cloud database platform</p>
+            <FontAwesomeIcon icon={faArrowRight} beat className={'arrow2'}/>
         </div>
     )
 };
