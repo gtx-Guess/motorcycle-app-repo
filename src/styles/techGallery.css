@@ -10,7 +10,7 @@
 }
 
 .techGalleryMainImg{
-    height: 60px;
+    height: 70px;
     width: auto;
     background: transparent;
     transition: .7s;
@@ -18,7 +18,7 @@
 
 .techGalleryMainImg:hover{
     position: relative;
-    transform: scale(2.5);
+    transform: scale(2) rotateY(-360deg);
     transition: .7s;
 }
 
