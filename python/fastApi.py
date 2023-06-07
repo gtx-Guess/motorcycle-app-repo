@@ -24,7 +24,7 @@ class FormData(BaseModel):
 async def formSubmission(form_data: FormData):
   print("endpoint hit!")
   brand_type = form_data.brand_type
-  print(f"Brand type from form submission in react: {brand_type}")
+  print(f"Brand type from form submission in react: {form_data}")
   return {"message" : "Form submitted successfully"}
 
 

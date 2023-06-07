@@ -16,6 +16,8 @@
     overflow: auto;
 }
 .left_ul {
+    /* display: flex;
+    flex-direction: column; */
     background-color: #383838c2;
     height: 620px;
     min-width: 120px;
@@ -29,7 +31,6 @@
 }
 .add-moto-li{
     text-align: center;
-    /* margin: 2px; */
     background-color: #133a61;
     color: #ffffff;
     cursor: pointer;
