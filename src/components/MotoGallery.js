@@ -1,11 +1,20 @@
 import '../styles/motoGallery.css';
+import reactLogo from '../static/react_logo.png';
+import githubLogo from '../static/gh_logo3.png';
+import nodeLogo from '../static/node_logo2.png';
+import pythonLogo from '../static/py_logo2.png';
+import supaBaseLogo from '../static/supa.png';
 
 const MotoGallery = () => {
 
-    const cards = [1,2,3,4,5,6,7,8];
-
     return(
-        <div className='main'>
+        <div className='motoGalleryMain'>
+            <img src={reactLogo}/>
+            <p id='reactBubble' className='reactBubble hideBubble'>this is for react</p>
+            <img src={githubLogo}/>
+            <img src={nodeLogo}/>
+            <img src={pythonLogo}/>
+            <img src={supaBaseLogo}/>
         </div>
     )
 };
