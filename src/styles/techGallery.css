@@ -1,4 +1,4 @@
-.motoGalleryMain{
+.TechGalleryMain{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -9,14 +9,14 @@
     border: 2px black solid;
 }
 
-.motoGalleryMain img{
+.TechGalleryMain img{
     height: 60px;
     width: auto;
     background: transparent;
     transition: .7s;
 }
 
-.motoGalleryMain img:hover{
+.TechGalleryMain img:hover{
     position: relative;
     transform: scale(2.5);
     transition: .7s;

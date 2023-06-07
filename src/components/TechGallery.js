@@ -1,14 +1,14 @@
-import '../styles/motoGallery.css';
+import '../styles/techGallery.css';
 import reactLogo from '../static/react_logo.png';
 import githubLogo from '../static/gh_logo3.png';
 import nodeLogo from '../static/node_logo2.png';
 import pythonLogo from '../static/py_logo2.png';
 import supaBaseLogo from '../static/supa.png';
 
-const MotoGallery = () => {
+const TechGallery = () => {
 
     return(
-        <div className='motoGalleryMain'>
+        <div className='TechGalleryMain'>
             <img src={reactLogo}/>
             <p id='reactBubble' className='reactBubble hideBubble'>this is for react</p>
             <img src={githubLogo}/>
@@ -19,4 +19,4 @@ const MotoGallery = () => {
     )
 };
 
-export default MotoGallery;
+export default TechGallery;
