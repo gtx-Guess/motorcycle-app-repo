@@ -18,7 +18,7 @@ const TechGallery = () => {
             <a href='https://github.com/gtx-Guess/motorcycle-app-repo' target="_blank">
                 <div>
                     <img className={'techGalleryMainImg'} src={githubLogo}/>
-                    <p id='ghBubble' className={'popup ghBubble'}>Click the cat for the github repo!</p>
+                    <p id='ghBubble' className={'popup ghBubble'}>Click the cat for my github repo!</p>
                 </div>
             </a>
 
