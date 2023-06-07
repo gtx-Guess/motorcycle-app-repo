@@ -13,7 +13,7 @@ const App = () => {
     <div>
       <Navbar/>
       <Container/>
-      <div id='background-blur' className='background-blur hide-moto-modal'></div>
+      <div id='background-blur' className={'background-blur hide-moto-modal'}></div>
       <TechGallery/>
     </div>
   );

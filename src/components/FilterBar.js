@@ -48,11 +48,11 @@ const FilterBar = ({ motoList }) => {
     }
 
     return (
-        <form id='filter-bar' className='filter-bar'>
-            <div id='div-of-selects' className='div-of-selects'>
+        <form id='filter-bar' className={'filter-bar'}>
+            <div id='div-of-selects' className={'div-of-selects'}>
                 <div id='select-1'>
                     <label htmlFor='brand_type'>Brand</label>
-                    <select id='brand_type' name='brand_type' ref={select1Ref} className='select-1'>
+                    <select id='brand_type' name='brand_type' ref={select1Ref} className={'select-1'}>
                         <option> None </option>
                         {brand_types.map((brand) => {
                             return( <option key={brand} value={brand}>{brand}</option> )
@@ -61,7 +61,7 @@ const FilterBar = ({ motoList }) => {
                 </div>
                 <div id='select-2'>
                     <label htmlFor='engine_size'>CC's</label>
-                    <select id='engine_size' name='engine_size' ref={select2Ref} className='select-2'>
+                    <select id='engine_size' name='engine_size' ref={select2Ref} className={'select-2'}>
                         <option> None </option>
                         {engine_size.map((size) => {
                             return( <option key={size} value={size}>{size}</option> )
@@ -70,7 +70,7 @@ const FilterBar = ({ motoList }) => {
                 </div>
                 <div id='select-3'>
                     <label htmlFor='moto_year'>Year</label>
-                    <select id='moto_year' name='moto_year' ref={select3Ref}  className='select-3'>
+                    <select id='moto_year' name='moto_year' ref={select3Ref}  className={'select-3'}>
                         <option> None </option>
                         {moto_year.map((year) => {
                             return( <option key={year} value={year}>{year}</option> )
@@ -78,9 +78,9 @@ const FilterBar = ({ motoList }) => {
                     </select>
                 </div>
             </div>
-            <div id='buttons' className='buttons'>
-                <input className='button' type='submit' value='Filter' onClick={formSubmit}/>
-                <input className='button' type='submit' value='Remove Filter' onClick={removeHide}/>
+            <div id='buttons' className={'buttons'}>
+                <input className={'button'} type='submit' value='Filter' onClick={formSubmit}/>
+                <input className={'button'} type='submit' value='Remove Filter' onClick={removeHide}/>
             </div>
         </form>
     );

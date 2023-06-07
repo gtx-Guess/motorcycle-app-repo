@@ -8,13 +8,13 @@ import supaBaseLogo from '../static/supa.png';
 const TechGallery = () => {
 
     return(
-        <div className='TechGalleryMain'>
-            <img src={reactLogo}/>
-            <p id='reactBubble' className='reactBubble hideBubble'>this is for react</p>
-            <img src={githubLogo}/>
-            <img src={nodeLogo}/>
-            <img src={pythonLogo}/>
-            <img src={supaBaseLogo}/>
+        <div className='techGalleryMain'>
+            <img className={'techGalleryMainImg'} src={reactLogo}/>
+            <p id='reactBubble' className='popup'>this is for react</p>
+            <img className={'techGalleryMainImg'} src={githubLogo}/>
+            <img className={'techGalleryMainImg'} src={nodeLogo}/>
+            <img className={'techGalleryMainImg'} src={pythonLogo}/>
+            <img className={'techGalleryMainImg'} src={supaBaseLogo}/>
         </div>
     )
 };
