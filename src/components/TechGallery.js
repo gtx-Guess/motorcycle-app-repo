@@ -8,7 +8,7 @@ import supaBaseLogo from '../static/supa.png';
 const TechGallery = () => {
 
     return(
-        <div className='techGalleryMain'>
+        <div className={'techGalleryMain'}>
             <img className={'techGalleryMainImg'} src={reactLogo}/>
             <p id='reactBubble' className='popup'>this is for react</p>
             <img className={'techGalleryMainImg'} src={githubLogo}/>
