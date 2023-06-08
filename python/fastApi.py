@@ -19,12 +19,15 @@ in this case its creating a form data object type that the "/submit" endpoint wi
 '''
 class FormData(BaseModel):
     brand_type: str
+    engine_size: int
+    moto_year: int
+    moto_name: str
 
 @app.post('/submit')
 async def formSubmission(form_data: FormData):
   print("endpoint hit!")
-  brand_type = form_data.brand_type
-  print(f"Brand type from form submission in react: {form_data}")
+  # brand_type = form_data.brand_type
+  print(f"Form submission data from react: {form_data}")
   return {"message" : "Form submitted successfully"}
 
 
