@@ -5,10 +5,14 @@ import '../styles/moto-form.css';
 const MotoForm = ({ props }) => {
     const toggleModal = props[0];
     const [brandType, setBrandType] = useState('');
+    const [engineSize, setEngineSize] = useState('');
+    const [motoYear, setMotoYear] = useState('');
+    const [motoName, setMotoName] = useState('');
+
     async function formSubmit (event) {
         event.preventDefault();
-        if(brandType != ''){
-            const requestBody = {brand_type: brandType};
+        if(brandType !== '' && engineSize !== '' && motoYear !== '' && motoName !== ''){
+            const requestBody = {brand_type: brandType, engine_size: engineSize, moto_year: motoYear, moto_name: motoName};
             const resp = await axios.post('http://localhost:8000/submit', requestBody);
 
             if(resp.status === 200){
@@ -17,24 +21,30 @@ const MotoForm = ({ props }) => {
                 console.log(`Form didnt go through, status code: ${resp.status}`);
             };
         }else{
-            alert('No brand type');
-        }
+            if(!brandType || !engineSize || !motoYear || !motoName){alert('All fields are required!')};
+            return;
+        };
     };
 
     const handleBrandTypeChange = (event) => {
-        setBrandType(event.target.value);
+        if(event.target.id === 'brand_type'){ setBrandType(event.target.value) };
+        if(event.target.id === 'engine_size'){ setEngineSize(event.target.value) };
+        if(event.target.id === 'moto_year'){ setMotoYear(event.target.value) };
+        if(event.target.id === 'moto_name'){ setMotoName(event.target.value) };
     };
 
     return (
         <div id='moto-form-modal-div' className={'hide-moto-modal'}>
             <div id='moto-form-div' className={'moto-form'}>
                 <form id='moto-form'>
-                    <label htmlFor="brand_type">Brand:</label>
+                    <label htmlFor='brand_type'>Moto Brand:</label>
                     <input onChange={handleBrandTypeChange} id='brand_type' placeholder='please type brand...'/>
-                    <label htmlFor='engine-size'>Engine Size:</label>
-                    <input id='engine-size' placeholder='please type engine size in cc...'/>
-                    <label htmlFor='moto-year'>Year:</label>
-                    <input id='moto-year' placeholder='please type year...'/>
+                    <label htmlFor='moto_name'>Moto Name:</label>
+                    <input onChange={handleBrandTypeChange} id='moto_name' placeholder='please type moto name...'/>
+                    <label htmlFor='engine_size'>Engine Size:</label>
+                    <input onChange={handleBrandTypeChange} id='engine_size' placeholder='please type engine size in cc...'/>
+                    <label htmlFor='moto_year'>Moto Year:</label>
+                    <input onChange={handleBrandTypeChange} id='moto_year' placeholder='please type year...'/>
                     <input type="submit" value="Submit" onClick={formSubmit}/>
                 </form>
                 <span className={"close"} onClick={toggleModal}>&times;</span>
