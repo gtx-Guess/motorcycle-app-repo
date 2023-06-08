@@ -7,6 +7,15 @@ headers = {
     'Authorization' : f'Bearer {access_token}'
 }
 
+def postMoto(name, brand, engine_size, year):
+    url = f'{baseUrl}/motorcycles'
+    data = {"name": name, "brand": brand, "cc": engine_size, "year": year}
+    resp = requests.post(url, data=data, headers=headers)
+    if resp.status_code in [200, 201]:
+        print(type(resp))
+
+postMoto('Vulcan', 'Kawasaki', 1200, 2013)
+
 def getMotorcycleFromDb():
     url = f'{baseUrl}/motorcycles?id=eq.3'
     resp = requests.get(url, headers=headers)
