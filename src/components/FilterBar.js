@@ -38,8 +38,8 @@ const FilterBar = ({ motoList }) => {
                 };
             });
         }else{
-            setErrorState(true);
             setErrorMessage('Please set filter parameters to filter!');
+            setErrorState(true);
             setTimeout(() => {
                 setErrorState(false);
             }, 6000);
@@ -49,8 +49,8 @@ const FilterBar = ({ motoList }) => {
     async function removeHide(e, remove=true){
         e.preventDefault();
         if(['', 'None'].includes(select1Ref.current.value) && ['', 'None'].includes(select2Ref.current.value) && ['', 'None'].includes(select3Ref.current.value)){
-            setErrorState(true);
             setErrorMessage('No filter set, cant remove filter!');
+            setErrorState(true);
             setTimeout(() => {
                 setErrorState(false);
             }, 6000);

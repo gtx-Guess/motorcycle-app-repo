@@ -23,8 +23,8 @@ const MotoForm = ({ props }) => {
                 motoSetter(oldMotos=> [...oldMotos, newMoto]);
             }else{
                 console.log(`POST FAILED, status code: ${resp.data.status_code}`);
-                setErrorState(true);
                 setErrorMessage('Motorcycle was not created! Something went wrong');
+                setErrorState(true);
                 setTimeout(() => {
                     setErrorState(false);
                 }, 6000);
@@ -32,8 +32,8 @@ const MotoForm = ({ props }) => {
             };
         }else{
             if(!brandType || !engineSize || !motoYear || !motoName){
-                setErrorState(true);
                 setErrorMessage('All fields have to be filled in!');
+                setErrorState(true);
                 setTimeout(() => {
                     setErrorState(false);
                 }, 6000);
