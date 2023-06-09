@@ -35,10 +35,10 @@ async def form_submission(form_data: Motorcycle):
   print(f"Form submission data from react: {form_data}")
   resp = database_queries.post_motorcycle(form_data)
   if resp == 200:
-    message = 'Successful post, status code: 200'
+    data = {'response': 'Successful post', 'status_code': 200}
   else:
-    message = f'Something went wrong, status code: {resp}'
-  return {"message" : message}
+    data = {'response': 'Something went wrong', 'status_code': resp}
+  return data
 
 
 @app.get('/api/getMotos')

@@ -54,7 +54,7 @@ const Motorcycles = ({ props }) => {
             {motoList.map((moto, index) => {
                 if(index === 0){ handleClick(moto, index) };
                 return(
-                    <li className={"motoLi"} key={index} id={moto.name + '-' + index} onClick={() => handleClick(moto, index)}>
+                    <li className={"motoLi"} key={index} id={moto.id} onClick={() => handleClick(moto, index)}>
                         <span className={'liSpan'}>{moto.name}</span>
                     </li>
                 )

@@ -41,7 +41,6 @@ const Container = () => {
         <ul id="left-list" className={'left_ul'} >
           <br/>
           <Motorcycles props={[motoList, contBottom]}/>
-          <br/><br/><br/>
           <span style={{ position: 'sticky', top: '86%' }}>
             <li className={'add-moto-li'} onClick={toggleModal}>Add Moto</li>
             <li className={'add-moto-li'}>Delete Moto</li>

@@ -1,6 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import ErrorBubble from './ErrorBubble';
 
 const FilterBar = ({ motoList }) => {
+    const [showError, setErrorState] = useState(false);
+    const [errorMessage, setErrorMessage] = useState();
+
     const select1Ref = useRef(null);
     const select2Ref = useRef(null);
     const select3Ref = useRef(null);
@@ -20,24 +24,37 @@ const FilterBar = ({ motoList }) => {
         const brand_type = document.getElementById('brand_type').value;
         const moto_year = document.getElementById('moto_year').value;
         const engine_size = document.getElementById('engine_size').value;
-        if(brand_type != 'None' || moto_year != 'None' || engine_size != 'None'){
+        if(brand_type !== 'None' || moto_year !== 'None' || engine_size !== 'None'){
             motoList.forEach((moto) => {
-                let li = document.getElementById(moto.id);
-                if(brand_type != 'None' && moto.brand != brand_type){
+                const li = document.getElementById(moto.id);
+                if(brand_type !== 'None' && moto.brand !== brand_type){
                     li.classList.add('hide');
                 };
-                if(moto_year != 'None' && moto.year != moto_year){
+                if(moto_year !== 'None' && moto.year !== moto_year){
                     li.classList.add('hide');
                 };
-                if(engine_size != 'None' && moto.cc != engine_size){
+                if(engine_size !== 'None' && moto.cc !== engine_size){
                     li.classList.add('hide');
                 };
             });
-        };
+        }else{
+            setErrorState(true);
+            setErrorMessage('Please set filter parameters to filter!');
+            setTimeout(() => {
+                setErrorState(false);
+            }, 6000);
+        }
     };
 
     async function removeHide(e, remove=true){
         e.preventDefault();
+        if(['', 'None'].includes(select1Ref.current.value) && ['', 'None'].includes(select2Ref.current.value) && ['', 'None'].includes(select3Ref.current.value)){
+            setErrorState(true);
+            setErrorMessage('No filter set, cant remove filter!');
+            setTimeout(() => {
+                setErrorState(false);
+            }, 6000);
+        };
         const hidden = document.querySelectorAll('.hide');
         hidden.forEach((child) => {child.classList.remove('hide')});
         if(remove){
@@ -82,6 +99,7 @@ const FilterBar = ({ motoList }) => {
                 <input className={'button'} type='submit' value='Filter' onClick={formSubmit}/>
                 <input className={'button'} type='submit' value='Remove Filter' onClick={removeHide}/>
             </div>
+            {showError && <ErrorBubble text={errorMessage}/>}
         </form>
     );
 };

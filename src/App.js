@@ -13,6 +13,7 @@ const App = () => {
     <div>
       <Navbar/>
       <Container/>
+      {/* <ErrorBubble/> */}
       <div id='background-blur' className={'background-blur hide-moto-modal'}></div>
       <TechGallery/>
     </div>
