@@ -5,14 +5,14 @@ import '../styles/moto-form.css';
 const MotoForm = ({ props }) => {
     const toggleModal = props[0];
     const motoSetter = props[1];
-    const [brandType, setBrandType] = useState('');
-    const [engineSize, setEngineSize] = useState('');
-    const [motoYear, setMotoYear] = useState('');
-    const [motoName, setMotoName] = useState('');
+    const [brandType, setBrandType] = useState();
+    const [engineSize, setEngineSize] = useState();
+    const [motoYear, setMotoYear] = useState();
+    const [motoName, setMotoName] = useState();
 
     async function motoFormSubmit (event) {
         event.preventDefault();
-        if(brandType !== '' && engineSize !== '' && motoYear !== '' && motoName !== ''){
+        if(brandType && engineSize && motoYear && motoName){
             const newMoto = {brand: brandType, cc: engineSize, year: motoYear, name: motoName};
             const resp = await axios.post('http://localhost:8000/api/createMoto', newMoto);
             if(resp.status === 200){
@@ -25,6 +25,8 @@ const MotoForm = ({ props }) => {
             if(!brandType || !engineSize || !motoYear || !motoName){alert('All fields are required!')};
             return;
         };
+        document.getElementById('moto-form').reset();
+        toggleModal();
     };
 
     const handleBrandTypeChange = (event) => {

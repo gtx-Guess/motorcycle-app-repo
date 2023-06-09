@@ -4,10 +4,14 @@ const Motorcycles = ({ props }) => {
     const motoList = props[0];
     const basePictureUrl = "https://wpddzvhmokvspeaundby.supabase.co/storage/v1/object/public/Motorcycle%20Pictures/";
     
-    const handleClick = (moto) => {
+    const handleClick = (moto, index) => {
         const activeCards = containerRef.current.querySelectorAll('.active');
         activeCards.forEach((card) => card.remove());
+        createCards(moto);
+        return;
+    };
 
+    const createCards = (moto) => {
         const card1El = document.createElement('div');
         card1El.classList.add('card', 'active');
         card1El.id = `${moto.name}_card`;
@@ -36,6 +40,7 @@ const Motorcycles = ({ props }) => {
           `;
           containerRef.current.appendChild(card2El);
         };
+        return;
     };
 
     const styles = {
@@ -47,10 +52,12 @@ const Motorcycles = ({ props }) => {
     return (
         <div style={styles}>
             {motoList.map((moto, index) => {
+                if(index === 0){ handleClick(moto, index) };
                 return(
-                <li className={"motoLi"} key={index} id={index} onClick={() => handleClick(moto)}>
-                    <span className={'liSpan'}>{moto.name}</span>
-                </li>)
+                    <li className={"motoLi"} key={index} id={moto.name + '-' + index} onClick={() => handleClick(moto, index)}>
+                        <span className={'liSpan'}>{moto.name}</span>
+                    </li>
+                )
             })}
         </div>
     );
