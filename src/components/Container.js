@@ -10,6 +10,7 @@ const Container = () => {
   const [motoList, motoSetter] = useState([]);
 
   const getMotoData = async () => {
+    console.log('getMotoData');
     const response = await axios.get('http://localhost:8000/api/getMotos');
     let resp = [...response.data];
     resp = resp.sort( (a,b) => ( a["brand"].localeCompare(b["brand"]) ) );
@@ -17,8 +18,13 @@ const Container = () => {
   };
 
   useEffect(() => {
+    console.log('Getting all moto data from supabase with getMotoData');
     getMotoData();
   }, []);
+
+  useEffect(() => {
+    console.log('Motolist state has been updated, re-rending list');
+  }, [motoList]);
 
   const toggleModal = () => {
       const form = document.getElementById('moto-form-modal-div');
@@ -26,10 +32,11 @@ const Container = () => {
       blur.classList.toggle('hide-moto-modal');
       form.classList.toggle('hide-moto-modal');
   };
+
   return (
     <div id="main-container" className={'container'} ref={containerRef}>      
       <FilterBar motoList={motoList}/>
-      <MotoForm props={[toggleModal]}/>
+      <MotoForm props={[toggleModal, motoSetter]}/>
       <div id='container-bottom' className={'container-bottom'} ref={contBottom}>
         <ul id="left-list" className={'left_ul'} >
           <br/>

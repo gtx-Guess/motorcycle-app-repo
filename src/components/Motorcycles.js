@@ -1,4 +1,5 @@
 const Motorcycles = ({ props }) => {
+    console.log('rendering motorcycles')
     const containerRef = props[1];
     const motoList = props[0];
     const basePictureUrl = "https://wpddzvhmokvspeaundby.supabase.co/storage/v1/object/public/Motorcycle%20Pictures/";
@@ -45,9 +46,9 @@ const Motorcycles = ({ props }) => {
 
     return (
         <div style={styles}>
-            {motoList.map((moto) => {
+            {motoList.map((moto, index) => {
                 return(
-                <li className={"motoLi"} key={moto.id} id={moto.id} onClick={() => handleClick(moto)}>
+                <li className={"motoLi"} key={index} id={index} onClick={() => handleClick(moto)}>
                     <span className={'liSpan'}>{moto.name}</span>
                 </li>)
             })}
