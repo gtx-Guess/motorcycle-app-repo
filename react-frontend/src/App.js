@@ -4,9 +4,9 @@ import Navbar from './components/Navbar';
 import Container from './components/Container';
 import TechGallery from './components/TechGallery';
 //2 main styling sheets
-import '../src/styles/container.css';
-import '../src/styles/filter-bar.css';
-import '../src/styles/moto-form.css';
+import './styles/container.css';
+import './styles/filter-bar.css';
+import './styles/moto-form.css';
 
 const App = () => {
   return (
