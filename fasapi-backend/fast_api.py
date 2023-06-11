@@ -48,7 +48,7 @@ async def get_all_motos():
 
 @app.get('/api/getMoto')
 async def get_specific_moto():
-  resp = database_queries.get_specific_motorcycle()
+  resp = database_queries.get_a_moto()
   return resp[0]
 
 #python3 -m uvicorn fast_api:app --reload
