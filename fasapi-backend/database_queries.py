@@ -20,7 +20,7 @@ def post_motorcycle(form_data):
             print('\n\nCould not make connection to supabase from post_motorcycle func\n\n')
             return 500
 
-def get_specific_motorcycle():
+def get_a_moto():
     url = f'{base_url}/motorcycles?id=eq.3'
 
     try:
@@ -33,7 +33,7 @@ def get_specific_motorcycle():
             return f'Idk figure it out: {resp.status_code}'
     except Exception as e:
         if type(e) == requests.exceptions.ConnectionError:
-            print('\n\nCould not make connection to supabase from get_specific_motorcycle func\n\n')
+            print('\n\nCould not make connection to supabase from get_a_moto func\n\n')
             return 500
 
 
