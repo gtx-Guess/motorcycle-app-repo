@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import '../styles/moto-form.css';
 import ErrorBubble from './ErrorBubble';
+const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 const MotoForm = ({ props }) => {
     const toggleModal = props[0];
@@ -17,7 +18,7 @@ const MotoForm = ({ props }) => {
         event.preventDefault();
         if(brandType && engineSize && motoYear && motoName){
             const newMoto = {brand: brandType, cc: engineSize, year: motoYear, name: motoName};
-            const resp = await axios.post('http://localhost:8000/api/createMoto', newMoto);
+            const resp = await axios.post(`${BASE_URL}/createMoto`, newMoto);
             if(resp.data.status_code === 200){
                 console.log('Created new motorcycle, posted to supabase');
                 motoSetter(oldMotos=> [...oldMotos, newMoto]);

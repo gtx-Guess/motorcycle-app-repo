@@ -2,7 +2,7 @@ const Motorcycles = ({ props }) => {
     console.log('rendering motorcycles')
     const containerRef = props[1];
     const motoList = props[0];
-    const basePictureUrl = "https://wpddzvhmokvspeaundby.supabase.co/storage/v1/object/public/Motorcycle%20Pictures/";
+    const basePictureUrl = process.env.REACT_APP_SB_PICTURE_URL;
     
     const handleClick = (moto, index) => {
         const activeCards = containerRef.current.querySelectorAll('.active');

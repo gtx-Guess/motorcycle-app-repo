@@ -3,6 +3,7 @@ import axios from 'axios';
 import Motorcycles from './Motorcycles';
 import FilterBar from './FilterBar';
 import MotoForm from './MotoForm';
+const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 const Container = () => {
   const containerRef = useRef(null);
@@ -11,7 +12,7 @@ const Container = () => {
 
   const getMotoData = async () => {
     console.log('getMotoData');
-    const response = await axios.get('http://localhost:8000/api/getMotos');
+    const response = await axios.get(`${BASE_URL}/getMotos`);
     let resp = [...response.data];
     resp = resp.sort( (a,b) => ( a["brand"].localeCompare(b["brand"]) ) );
     motoSetter([...resp]);
