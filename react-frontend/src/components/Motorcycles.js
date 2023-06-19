@@ -1,22 +1,30 @@
 const Motorcycles = ({ props }) => {
-    console.log('rendering motorcycles')
+    console.log('rendering motorcycles');
     const containerRef = props[1];
     const motoList = props[0];
     const basePictureUrl = process.env.REACT_APP_SB_PICTURE_URL;
     
-    const handleClick = (moto, index) => {
-        const activeCards = containerRef.current.querySelectorAll('.active');
-        activeCards.forEach((card) => card.remove());
-        createCards(moto);
+    const handleClick = (moto) => {
+        const activeCards = containerRef.current.querySelectorAll('.card');
+        activeCards.forEach((card) => card.classList.add('hide'));
+        const activeCards2 = containerRef.current.querySelectorAll('.card2');
+        activeCards2.forEach((card) => card.classList.add('hide'));
+
+        const card1 = document.getElementById(`${moto.name}_${moto.id}_card`);
+        card1.classList.remove('hide');
+        if(moto.data){
+            const card2 = document.getElementById(`${moto.name}_${moto.id}_card2`);
+            card2.classList.remove('hide');
+        }
         return;
     };
 
-    const createCards = (moto) => {
+    const createCards = (moto, index) => {
+        if(document.getElementById(`${moto.name}_${moto.id}_card`)){return};
         const card1El = document.createElement('div');
-        card1El.classList.add('card', 'active');
-        card1El.id = `${moto.name}_card`;
+        card1El.classList.add('card', 'hide');
+        card1El.id = `${moto.name}_${moto.id}_card`;
         card1El.innerHTML = `
-            <div>
             <p><span class="cardSpan">Brand:</span> ${moto.brand}</p>
             <p><span class="cardSpan">Name:</span> ${moto.name}</p>
             <p><span class="cardSpan">Year:</span> ${moto.year}</p>
@@ -27,8 +35,8 @@ const Motorcycles = ({ props }) => {
 
         if(moto.data){
           const card2El = document.createElement('div');
-          card2El.classList.add('card2','active');
-          card2El.id = `${moto.name}_card2`;
+          card2El.classList.add('card2','hide');
+          card2El.id = `${moto.name}_${moto.id}_card2`;
           card2El.innerHTML = `
             <p><span class="cardSpan">Top Speed:</span>${moto.data.top}</p>
             <p><span class="cardSpan">0-60:</span> ${moto.data.time}</p>
@@ -40,6 +48,7 @@ const Motorcycles = ({ props }) => {
           `;
           containerRef.current.appendChild(card2El);
         };
+        if(index===0){handleClick(moto)};
         return;
     };
 
@@ -52,7 +61,7 @@ const Motorcycles = ({ props }) => {
     return (
         <div style={styles}>
             {motoList.map((moto, index) => {
-                if(index === 0){ handleClick(moto, index) };
+                createCards(moto, index);
                 return(
                     <li className={"motoLi"} key={index} id={moto.id} onClick={() => handleClick(moto, index)}>
                         <span className={'liSpan'}>{moto.name}</span>

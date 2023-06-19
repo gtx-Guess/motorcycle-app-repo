@@ -27,13 +27,13 @@ const FilterBar = ({ motoList }) => {
         if(brand_type !== 'None' || moto_year !== 'None' || engine_size !== 'None'){
             motoList.forEach((moto) => {
                 const li = document.getElementById(moto.id);
-                if(brand_type !== 'None' && moto.brand !== brand_type){
+                if( !['', 'None'].includes(brand_type) && moto.brand !== brand_type ){
                     li.classList.add('hide');
                 };
-                if(moto_year !== 'None' && moto.year !== moto_year){
+                if( !['', 'None'].includes(moto_year) && moto.year !== parseInt(moto_year) ){
                     li.classList.add('hide');
                 };
-                if(engine_size !== 'None' && moto.cc !== engine_size){
+                if( !['', 'None'].includes(engine_size) && moto.cc !== parseInt(engine_size) ){
                     li.classList.add('hide');
                 };
             });
@@ -55,7 +55,7 @@ const FilterBar = ({ motoList }) => {
                 setErrorState(false);
             }, 6000);
         };
-        const hidden = document.querySelectorAll('.hide');
+        const hidden = document.querySelectorAll('li.hide');
         hidden.forEach((child) => {child.classList.remove('hide')});
         if(remove){
             select1Ref.current.value = 'None';
