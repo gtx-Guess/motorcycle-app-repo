@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import database_queries
@@ -31,14 +31,14 @@ def home():
   return 'This is home page'
 
 @app.post('/api/createMoto')
-async def form_submission(form_data: Motorcycle):
-  print(f"Form submission data from react: {form_data}")
-  resp = database_queries.post_motorcycle(form_data)
-  if resp == 200:
-    data = {'response': 'Successful post', 'status_code': 200}
-  else:
-    data = {'response': 'Something went wrong', 'status_code': resp}
-  return data
+async def form_submission(moto: Motorcycle):
+  print(f"Form submission data from react: {moto}")
+  # resp = database_queries.post_motorcycle(motorcycle)
+  # if resp == 200:
+  #   data = {'response': 'Successful post', 'status_code': 200}
+  # else:
+  #   data = {'response': 'Something went wrong', 'status_code': resp}
+  # return data
 
 
 @app.get('/api/getMotos')

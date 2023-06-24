@@ -4,7 +4,29 @@ form{
     min-width: fit-content;
     max-width: 400px;
 }
+form input{
+    margin-bottom: 8%;
+}
+label {
+    font-weight: bold;
+}
+#moto-form-div{
+    display: flex;
+}
+#upload-box{
+    position: relative;
+    border: 3px dashed black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    height: 90%;
+}
+#moto-form{
+    width: 20vw;
+}
 .moto-form{
+    font-size: 1.8rem;
     position: absolute;
     top: 75%;
     left: 50%;
@@ -14,6 +36,7 @@ form{
     width: 75%; 
     height: 65%;
     z-index: 2;
+    justify-content: space-evenly;
 }
 .hide-moto-modal{
     display: none;
@@ -26,7 +49,7 @@ form{
 .close {
     color: rgb(0, 254, 224);
     top: 0%;
-    left: 92%;
+    left: 94%;
     position: absolute;
     font-size: 45px;
     font-weight: bold;
