@@ -37,7 +37,7 @@ const Container = () => {
   return (
     <div id="main-container" className={'container'} ref={containerRef}>      
       <FilterBar motoList={motoList}/>
-      <MotoForm props={[toggleModal, motoSetter]}/>
+      <MotoForm props={[toggleModal, getMotoData]}/>
       <div id='container-bottom' className={'container-bottom'} ref={contBottom}>
         <ul id="left-list" className={'left_ul'} >
           <br/>

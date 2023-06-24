@@ -7,9 +7,10 @@ headers = {
     'Authorization' : f'Bearer {access_token}'
 }
 
-def post_motorcycle(form_data):
+def post_motorcycle(motorcycle):
+    print(motorcycle.image)
     url = f'{base_url}/motorcycles'
-    data = {"name": form_data.name, "brand": form_data.brand, "cc": form_data.cc, "year": form_data.year}
+    data = {"name": motorcycle.name, "brand": motorcycle.brand, "cc": motorcycle.cc, "year": motorcycle.year}
     try:
         resp = requests.post(url, data=data, headers=headers)
         if resp.status_code in [200, 201]:
