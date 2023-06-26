@@ -18,7 +18,7 @@ const Dropzone = ({ props }) => {
             }, 5000);
         }, 2000);
 
-    }, []);
+    }, [setFiles, setCount]);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,

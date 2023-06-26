@@ -1,8 +1,8 @@
 import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
-const KEY = process.env.REACT_APP_AWS_S3_KEY;
-const SECRET = process.env.REACT_APP_AWS_S3_SECRET;
+const KEY = import.meta.env.VITE_AWS_S3_KEY;
+const SECRET = import.meta.env.VITE_AWS_S3_SECRET;
 const S3_BUCKET = 'moto-pics';
 const s3 = new S3Client({
     credentials: {
