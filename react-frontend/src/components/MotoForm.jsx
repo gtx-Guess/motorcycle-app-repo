@@ -5,7 +5,7 @@ import '../styles/moto-form.css';
 import ErrorBubble from './ErrorBubble';
 import Dropzone from './Dropzone';
 
-const BASE_URL = process.env.REACT_APP_SERVER_URL;
+const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
 const MotoForm = ({ props }) => {
     const toggleModal = props[0];

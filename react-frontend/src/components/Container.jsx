@@ -3,7 +3,7 @@ import axios from 'axios';
 import Motorcycles from './Motorcycles';
 import FilterBar from './FilterBar';
 import MotoForm from './MotoForm';
-const BASE_URL = process.env.REACT_APP_SERVER_URL;
+const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
 const Container = () => {
   const containerRef = useRef(null);
