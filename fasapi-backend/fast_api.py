@@ -22,6 +22,7 @@ class Motorcycle(BaseModel):
     cc: int
     year: int
     name: str
+    imageLink: str
 '''
 end class
 '''
@@ -32,13 +33,12 @@ def home():
 
 @app.post('/api/createMoto')
 async def form_submission(moto: Motorcycle):
-  print(f"Form submission data from react: {moto}")
-  # resp = database_queries.post_motorcycle(motorcycle)
-  # if resp == 200:
-  #   data = {'response': 'Successful post', 'status_code': 200}
-  # else:
-  #   data = {'response': 'Something went wrong', 'status_code': resp}
-  # return data
+  resp = database_queries.post_motorcycle(moto)
+  if resp == 200:
+    data = {'response': 'Successful post', 'status_code': 200}
+  else:
+    data = {'response': 'Something went wrong', 'status_code': resp}
+  return data
 
 
 @app.get('/api/getMotos')

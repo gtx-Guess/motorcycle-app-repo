@@ -8,9 +8,8 @@ headers = {
 }
 
 def post_motorcycle(motorcycle):
-    print(motorcycle.image)
     url = f'{base_url}/motorcycles'
-    data = {"name": motorcycle.name, "brand": motorcycle.brand, "cc": motorcycle.cc, "year": motorcycle.year}
+    data = { "name": motorcycle.name, "brand": motorcycle.brand, "cc": motorcycle.cc, "year": motorcycle.year, "imageLink": motorcycle.imageLink }
     try:
         resp = requests.post(url, data=data, headers=headers)
         if resp.status_code in [200, 201]:

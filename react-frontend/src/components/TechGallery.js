@@ -12,23 +12,23 @@ const TechGallery = () => {
     return(
         <div className={'techGalleryMain'}>
             <FontAwesomeIcon icon={faArrowRight} beat className={'arrow'}/>
-            <img className={'techGalleryMainImg'} src={reactLogo}/>
+            <img className={'techGalleryMainImg'} src={reactLogo} alt='react logo'/>
             <p id='reactBubble' className={'popup reactBubble'}>React for the frontend</p>
 
             <a href='https://github.com/gtx-Guess/motorcycle-app-repo' target="_blank">
                 <div>
-                    <img className={'techGalleryMainImg'} src={githubLogo}/>
+                    <img className={'techGalleryMainImg'} src={githubLogo} alt='git hub logo'/>
                     <p id='ghBubble' className={'popup ghBubble'}>Click the cat icon below for my github repo!</p>
                 </div>
             </a>
 
-            <img className={'techGalleryMainImg'} src={nodeLogo}/>
+            <img className={'techGalleryMainImg'} src={nodeLogo} alt='node logo'/>
             <p id='nodeBubble' className={'popup nodeBubble'}>Javascript/node for development</p>
 
-            <img className={'techGalleryMainImg'} src={pythonLogo}/>
+            <img className={'techGalleryMainImg'} src={pythonLogo} alt='python logo'/>
             <p id='pyBubble' className={'popup pyBubble'}>Python for the backend to create REST Api</p>
 
-            <img className={'techGalleryMainImg'} src={supaBaseLogo}/>
+            <img className={'techGalleryMainImg'} src={supaBaseLogo} alt='supa base logo'/>
             <p id='sbBubble' className={'popup sbBubble'}>SupaBase for cloud storage and cloud database platform</p>
             <FontAwesomeIcon icon={faArrowRight} beat className={'arrow2'}/>
         </div>
