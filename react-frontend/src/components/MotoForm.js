@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { sendBinaryStringObjectToS3 } from '../utils/helpers';
 import '../styles/moto-form.css';
 import ErrorBubble from './ErrorBubble';
 import Dropzone from './Dropzone';
-import { thing } from '../utils/utils';
+
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 const MotoForm = ({ props }) => {
@@ -29,20 +30,21 @@ const MotoForm = ({ props }) => {
         event.preventDefault();
         const formData = new FormData();
         formData.append('file', file, file.name);
-        // const bFile = new Blob([file], { type: 'image/jpeg' });
-        // const blobUrl = URL.createObjectURL(bFile);
-        // return;
-
-        // thing(2); <== can use this as a function from utils.js will probably make this my s3 file uploader file
-
+        const blobFile = new Blob([file], { type: 'image/jpeg' });
+        await sendBinaryStringObjectToS3(blobFile, file.name);
+ 
         if(brandType && engineSize && motoYear && motoName && file){
-            const newMoto = {brand: brandType, cc: engineSize, year: motoYear, name: motoName};
+            const newMoto = { brand: brandType, cc: engineSize, year: motoYear, name: motoName, imageLink: file.name };
             const resp = await axios.post(`${BASE_URL}/createMoto`, newMoto);
             if(resp.data.status_code === 200){
                 console.log('Created new motorcycle, posted to supabase');
                 getMotoData();
+                setFiles(null);
+                setCount(0);
             }else{
                 console.log(`POST FAILED, status code: ${resp.data.status_code}`);
+                setFiles(null);
+                setCount(0);
                 setErrorMessage('Motorcycle was not created! Something went wrong');
                 setErrorState(true);
                 setTimeout(() => {
@@ -52,6 +54,8 @@ const MotoForm = ({ props }) => {
             };
         }else{
             if(!brandType || !engineSize || !motoYear || !motoName){
+                setFiles(null);
+                setCount(0);
                 setErrorMessage('All fields have to be filled in!');
                 setErrorState(true);
                 setTimeout(() => {
@@ -59,6 +63,8 @@ const MotoForm = ({ props }) => {
                 }, timeoutTime);
             };
             if(!file){
+                setFiles(null);
+                setCount(0);
                 setErrorMessage('You have to upload a picture in order to submit a motorcycle!');
                 setErrorState(true);
                 setTimeout(() => {

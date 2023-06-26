@@ -2,8 +2,11 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import '../styles/dropzone.css'
 
-const Dropzone = ({ setFiles, count, setCount }) => {
+const Dropzone = ({ props }) => {
     const [success, setSuccess] = useState(false);
+    const setFiles = props[0];
+    const count = props[1];
+    const setCount = props[2];
 
     const onDrop = useCallback((acceptedFile) => {
         setFiles(acceptedFile[0]);
@@ -15,7 +18,7 @@ const Dropzone = ({ setFiles, count, setCount }) => {
             }, 5000);
         }, 2000);
 
-    }, [setCount, setFiles]);
+    }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
