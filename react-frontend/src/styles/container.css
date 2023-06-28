@@ -16,8 +16,6 @@
     overflow: auto;
 }
 .left_ul {
-    /* display: flex;
-    flex-direction: column; */
     background-color: #383838c2;
     height: 620px;
     min-width: 120px;
@@ -26,8 +24,13 @@
     list-style: none;
     overflow: auto;
     font-size: 20px;
+    text-align: center;
     /* background-color: rgb(207, 237, 246);    
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); */
+}
+.add-delete-buttons {
+    margin-top: 10px;
+    position: sticky;
 }
 .add-moto-li{
     text-align: center;
