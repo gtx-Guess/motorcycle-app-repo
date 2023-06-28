@@ -1,23 +1,26 @@
+import MotoCards from "./MotoCards";
+
+export const handleClick = (moto, containerRef) => {
+    const activeCards = containerRef.current.querySelectorAll('.card');
+    activeCards.forEach((card) => card.classList.add('hide'));
+    const activeCards2 = containerRef.current.querySelectorAll('.card2');
+    activeCards2.forEach((card) => card.classList.add('hide'));
+
+    const card1 = document.getElementById(`${moto.name}_${moto.id}_card`);
+    card1.classList.remove('hide');
+    if(moto.data){
+        const card2 = document.getElementById(`${moto.name}_${moto.id}_card2`);
+        card2.classList.remove('hide');
+    }
+    return;
+};
+
 const Motorcycles = ({ props }) => {
     console.log('rendering motorcycles');
     const S3_BASE_URL = 'https://moto-pics.s3.us-west-1.amazonaws.com/';
     const containerRef = props[1];
     const motoList = props[0];
-    
-    const handleClick = (moto) => {
-        const activeCards = containerRef.current.querySelectorAll('.card');
-        activeCards.forEach((card) => card.classList.add('hide'));
-        const activeCards2 = containerRef.current.querySelectorAll('.card2');
-        activeCards2.forEach((card) => card.classList.add('hide'));
 
-        const card1 = document.getElementById(`${moto.name}_${moto.id}_card`);
-        card1.classList.remove('hide');
-        if(moto.data){
-            const card2 = document.getElementById(`${moto.name}_${moto.id}_card2`);
-            card2.classList.remove('hide');
-        }
-        return;
-    };
 
     const createCards = (moto, index) => {
         if(document.getElementById(`${moto.name}_${moto.id}_card`)){return};
@@ -68,7 +71,7 @@ const Motorcycles = ({ props }) => {
             {motoList.map((moto, index) => {
                 createCards(moto, index);
                 return(
-                    <li className={"motoLi"} key={index} id={moto.id} onClick={() => handleClick(moto, index)}>
+                    <li className={"motoLi"} key={index} id={moto.id} onClick={() => handleClick(moto, containerRef)}>
                         <span className={'liSpan'}>{moto.name}</span>
                     </li>
                 )
