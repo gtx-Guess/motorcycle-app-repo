@@ -85,7 +85,7 @@ const MotoForm = ({ props }) => {
     };
 
     return (
-        <div id='moto-form-modal-div' className={'hide-moto-modal'}>
+        <div id='moto-form-modal-div' className={'hide'}>
             <div id='moto-form-div' className={'moto-form'}>
                 <form id='moto-form'>
                     <label htmlFor='brand_type'>Moto Brand:</label>
@@ -99,9 +99,9 @@ const MotoForm = ({ props }) => {
                     <input type="submit" value="Submit" onClick={motoFormSubmit}/>
                 </form>
                 <span className={"close"} onClick={toggleModal}>&times;</span>
-                {showError && <ErrorBubble text={errorMessage}/>}
+                {showError && <ErrorBubble key={'ErrorBubble-MotoForm'} text={errorMessage}/>}
                 <div id='upload-box'>
-                    <Dropzone props={[setFiles, count, setCount]}/>
+                    <Dropzone key={'DropZone-motoForm'} props={[setFiles, count, setCount]}/>
                 </div>
             </div>
         </div>
