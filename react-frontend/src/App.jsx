@@ -7,14 +7,13 @@ import TechGallery from './components/TechGallery';
 import './styles/container.css';
 import './styles/filter-bar.css';
 import './styles/moto-form.css';
+import './styles/moto-card.css';
 
 const App = () => {
   return (
     <div>
       <Navbar/>
       <Container/>
-      {/* <ErrorBubble/> */}
-      <div id='background-blur' className={'background-blur hide-moto-modal'}></div>
       <TechGallery/>
     </div>
   );
