@@ -89,13 +89,13 @@ const MotoForm = ({ props }) => {
             <div id='moto-form-div' className={'moto-form'}>
                 <form id='moto-form'>
                     <label htmlFor='brand_type'>Moto Brand:</label>
-                    <input onChange={handleChange} id='brand_type' placeholder='please type brand...'/>
+                    <input type="text" onChange={handleChange} id='brand_type' placeholder='please type brand...'/>
                     <label htmlFor='moto_name'>Moto Name:</label>
-                    <input onChange={handleChange} id='moto_name' placeholder='please type moto name...'/>
+                    <input type="text" onChange={handleChange} id='moto_name' placeholder='please type moto name...'/>
                     <label htmlFor='engine_size'>Engine Size:</label>
-                    <input onChange={handleChange} id='engine_size' placeholder='please type engine size in cc...'/>
+                    <input type="number" onChange={handleChange} id='engine_size' placeholder='please type engine size in cc...'/>
                     <label htmlFor='moto_year'>Moto Year:</label>
-                    <input onChange={handleChange} id='moto_year' placeholder='please type year...'/>
+                    <input type="number" onChange={handleChange} id='moto_year' placeholder='please type year...'/>
                     <input type="submit" value="Submit" onClick={motoFormSubmit}/>
                 </form>
                 <span className={"close"} onClick={toggleModal}>&times;</span>
