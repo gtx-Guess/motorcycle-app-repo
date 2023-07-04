@@ -1,0 +1,39 @@
+.edit-buttons-div{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.update-moto-btn{
+    width: 45%;
+    background-color: #133a61;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.update-moto-btn:hover{
+    background-color: #4caf50;
+    transition: all .4s ease-in-out;
+}
+.delete-moto-btn{
+    width: 45%;
+    background-color: #133a61;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.delete-moto-btn:hover{
+    background-color: #f44336;
+    transition: all .4s ease-in-out;
+}
+.hide-edit-btns{
+    display: none;
+}
+.block-click{
+    pointer-events: none;
+}

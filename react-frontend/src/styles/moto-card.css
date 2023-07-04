@@ -1,4 +1,6 @@
 .card {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -40,4 +42,16 @@
 img {
     width: 100%;
     height: auto;
+}
+.hide-card{
+    display: none;
+}
+.edit-moto{
+    width: fit-content;
+    cursor: pointer;
+    position: relative;
+    left: 96%;
+}
+.edit-moto:hover{
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
