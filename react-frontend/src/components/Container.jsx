@@ -7,7 +7,7 @@ import MotorcycleList from "./MotorcycleList";
 import MotoDetailCard from "./MotoDetailCard";
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
-const Container = ( { reload } ) => {
+const Container = () => {
     const removeClass = document.querySelectorAll('to-front');
     removeClass.forEach(e => { e.classList.remove('to-front')});
     const containerRef = useRef(null);
@@ -44,7 +44,7 @@ const Container = ( { reload } ) => {
     const motoCardDetailElements = [];
     motoList.map((moto, i) => {
         motoCardElements.push(
-            <MotoCard key={`motoCard-${i}`} props={[moto, i, reload]}/>
+            <MotoCard key={`motoCard-${i}`} props={[moto, i, getMotoData]}/>
         );
         if(moto.data){
             motoCardDetailElements.push(

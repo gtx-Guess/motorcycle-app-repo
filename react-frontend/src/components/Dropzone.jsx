@@ -42,7 +42,7 @@ const Dropzone = ({ props }) => {
             </div>
             <p>File Count: {count}</p>
             {success &&
-                    <div id='success-message'>File was uploaded!</div>
+                    <div id='success-message' className={'success-message'}>File was uploaded!</div>
             }
         </form>
     );

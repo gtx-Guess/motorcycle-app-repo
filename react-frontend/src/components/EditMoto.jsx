@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Dropzone from './Dropzone';
 
 const EditMoto = ({ moto }) => {
@@ -11,8 +11,8 @@ const EditMoto = ({ moto }) => {
         overLay.classList.remove('hide');
         const gear = document.getElementById(`${moto.id}-update-gear`);
         gear.classList.add('block-click');
-        const updateButton = card.querySelector('div');
-        updateButton.classList.remove('hide-edit-btns');
+        const updateButtonsDiv = card.querySelector('#edit-buttons-div');
+        updateButtonsDiv.classList.remove('hide-edit-btns');
         const brandSpan = document.getElementById(`${moto.id}-brand-value-span`);
         const nameSpan = document.getElementById(`${moto.id}-name-value-span`);
         const yearSpan = document.getElementById(`${moto.id}-year-value-span`);
@@ -41,7 +41,7 @@ const EditMoto = ({ moto }) => {
     };
 
     return (
-        <FontAwesomeIcon id={`${moto.id}-update-gear`} className={'edit-moto'} icon={faGear} spin spinReverse size="lg" onClick={handleGearClick}/>
+        <FontAwesomeIcon id={`${moto.id}-update-gear`} className={'edit-moto'} icon={faBars} size="xl" onClick={handleGearClick}/>
     )
 
 };
