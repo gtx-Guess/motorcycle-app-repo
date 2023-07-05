@@ -14,18 +14,19 @@ import "./styles/edit-moto.css";
 const App = () => {
     const removeClass = document.querySelectorAll('to-front');
     removeClass.forEach(e => { e.classList.remove('to-front')});
-    const [reloadKey, setReloadKey] = useState(0);
+    // const [reloadKey, setReloadKey] = useState(0);
 
-    const handleReload = () => {
-        console.log('realoded')
-        setReloadKey((prevKey) => prevKey + 1);
-    };
+    // const handleReload = () => {
+    //     console.log('realoded')
+    //     setReloadKey((prevKey) => prevKey + 1);
+    // };
 
     return (
         <div>
             <div id={"overlay"} className={"overlay hide"}></div>
             <Navbar />
-            <Container  reload={handleReload} key={reloadKey}/>
+            {/* <Container  reload={handleReload} key={reloadKey}/> */}
+            <Container />
             <TechGallery />
         </div>
     );

@@ -18,16 +18,12 @@ app.add_middleware(
 The class below creates an api object type that inherts from the "BaseModel" class,
 in this case its creating a form data object type that the "/submit" endpoint will be expecting
 """
-
-
 class Motorcycle(BaseModel):
     brand: str
     cc: int
     year: int
     name: str
     imageLink: str
-
-
 """
 end class
 """
@@ -37,6 +33,11 @@ end class
 def home():
     return "This is home page"
 
+@app.put('/api/updateMoto')
+async def updateMotorcycle(data: dict):
+    print(data["id"])
+    resp = database_queries.update_moto(data)
+    return resp
 
 @app.delete("/api/deleteMoto/{moto_id}")
 async def deleteMotorcycle(moto_id: int):

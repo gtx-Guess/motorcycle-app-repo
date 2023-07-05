@@ -1,3 +1,20 @@
+.edit-moto{
+    width: fit-content;
+    cursor: pointer;
+}
+.edit-moto:hover{
+    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); */
+    color: #78c9ff;
+}
+.edit-top-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.edit-moto-brand-p-tag{
+    all: unset !important;
+}
 .edit-buttons-div{
     display: flex;
     margin-top: 10px;
