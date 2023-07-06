@@ -17,6 +17,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.vscode
 s3.js
 
 npm-debug.log*

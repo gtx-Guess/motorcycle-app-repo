@@ -14,8 +14,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.background-blur{
+  position: absolute;
+  background: rgba(0, 0, 0, 0.77);
+  /* padding-top: 6%; */
+  height: 100vh;
+  width: 50%;
+  color: transparent;
+  z-index: 1;
+}
+.hide{
+  display: none;
+}
+.to-front{
+  z-index: 999;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.5);
 }

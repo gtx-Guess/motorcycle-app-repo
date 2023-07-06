@@ -27,7 +27,7 @@
 ul{
     list-style-type: none;
 }
-#success-message{
+.success-message{
     display: flex;
     width: fit-content;
     position: absolute;

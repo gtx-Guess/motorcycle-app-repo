@@ -1,0 +1,48 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    width: 40%;
+    height: fit-content;
+    margin: 16px;
+    margin-left: 16%;
+    font-size: 20px;
+    overflow: hidden;
+}
+.card > div > p{
+    margin-left: 25%;
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+}
+.cardSpan {
+    font-weight: bolder;
+}
+.card2 {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    width: 20%;
+    height: fit-content;
+    margin: 16px;
+    margin-left: 3%;
+    font-size: 20px;
+    overflow: hidden;
+}
+.card2 > *{
+    display: flex;
+    justify-content: space-between;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+.hide-card{
+    display: none;
+}
