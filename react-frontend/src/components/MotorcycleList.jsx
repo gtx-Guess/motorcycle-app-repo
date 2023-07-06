@@ -1,8 +1,8 @@
 const MotorcycleList = ({ props }) => {
-    console.log('rendering motorcycle left list');
+    //console.log('rendering motorcycle left list');
     const contBottom = props[1];
     const motoList = props[0];
-    console.log(props);
+    //console.log(props);
 
     const styles = {
         display: "flex",

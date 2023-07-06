@@ -11,23 +11,31 @@ const MotoForm = ({ props }) => {
     const toggleModal = props[0];
     const getMotoData = props[1];
 
-    const [brandType, setBrandType] = useState();
-    const [engineSize, setEngineSize] = useState();
-    const [motoYear, setMotoYear] = useState();
-    const [motoName, setMotoName] = useState();
+    const [brandType, setBrandType] = useState(null);
+    const [engineSize, setEngineSize] = useState(null);
+    const [motoYear, setMotoYear] = useState(null);
+    const [motoName, setMotoName] = useState(null);
     const [showError, setErrorState] = useState(false);
-    const [errorMessage, setErrorMessage] = useState();
+    const [errorMessage, setErrorMessage] = useState(null);
     const [file, setFiles] = useState(null);
     const [count, setCount] = useState(0);
-    const timeoutTime = 6000;
+    const timeoutTime = 2000;
 
     useEffect(() => {
-        console.log('Files got a new file');
-        console.log(file);
+        //console.log('Files got a new file');
+        //console.log(file);
     }, [file]);
 
     async function motoFormSubmit (event) {
         event.preventDefault();
+        if(!file){
+            setErrorMessage('Have to provide a file for motorcycle creation!');
+            setErrorState(true);
+            setTimeout(() => {
+                setErrorState(false);
+            }, timeoutTime);
+            return;
+        };
         const formData = new FormData();
         formData.append('file', file, file.name);
         const blobFile = new Blob([file], { type: 'image/jpeg' });
@@ -35,14 +43,14 @@ const MotoForm = ({ props }) => {
  
         if(brandType && engineSize && motoYear && motoName && file){
             const newMoto = { brand: brandType, cc: engineSize, year: motoYear, name: motoName, imageLink: file.name };
-            const resp = await axios.post(`${BASE_URL}/createMoto`, newMoto);
-            if(resp.data.status_code === 200){
-                console.log('Created new motorcycle, posted to supabase');
+            try {
+                const resp = await axios.post(`${BASE_URL}/createMoto`, newMoto);
+                //console.log('Created new motorcycle, posted to supabase');
                 getMotoData();
                 setFiles(null);
                 setCount(0);
-            }else{
-                console.log(`POST FAILED, status code: ${resp.data.status_code}`);
+            } catch (error) {
+                //console.log(`POST FAILED, status code: ${resp.data.status_code}`);
                 setFiles(null);
                 setCount(0);
                 setErrorMessage('Motorcycle was not created! Something went wrong');
@@ -51,7 +59,7 @@ const MotoForm = ({ props }) => {
                     setErrorState(false);
                 }, timeoutTime);
                 return;
-            };
+            }
         }else{
             if(!brandType || !engineSize || !motoYear || !motoName){
                 setFiles(null);

@@ -17,7 +17,7 @@ const App = () => {
     // const [reloadKey, setReloadKey] = useState(0);
 
     // const handleReload = () => {
-    //     console.log('realoded')
+    //     //console.log('realoded')
     //     setReloadKey((prevKey) => prevKey + 1);
     // };
 
