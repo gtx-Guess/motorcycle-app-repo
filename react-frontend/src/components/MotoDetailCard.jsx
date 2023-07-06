@@ -3,11 +3,8 @@ const MotoDetailCard = ( { props } ) => {
     const moto = props[0];
     const index = props[1];
 
-    let classes;
-    if(index === 0){classes = 'card2'}
-    else{classes = 'card2 hide'}
     return (
-        <div id={`${moto.name}_${moto.id}_card2`} className={classes}>
+        <div id={`${moto.name}_${moto.id}_card2`} className={index === 0 ? 'card2': 'card2 hide-card'}>
             <p><span className={"cardSpan"}>Top Speed:</span>{moto.data.top}</p>
             <p><span className={"cardSpan"}>0-60:</span> {moto.data.time}</p>
             <p><span className={"cardSpan"}>Horse Power:</span> {moto.data.hp}</p>

@@ -15,7 +15,7 @@ const Container = () => {
     const [motoList, motoSetter] = useState([]);
 
     const getMotoData = async () => {
-        console.log("getMotoData");
+        //console.log("getMotoData");
         const response = await axios.get(`${BASE_URL}/getMotos`);
         let resp = [...response.data];
         resp = resp.sort((a, b) => a["brand"].localeCompare(b["brand"]));
@@ -23,12 +23,12 @@ const Container = () => {
     };
 
     useEffect(() => {
-        console.log("Getting all moto data from supabase with getMotoData");
+        //console.log("Getting all moto data from supabase with getMotoData");
         getMotoData();
     }, []);
 
     useEffect(() => {
-        console.log("Motolist state has been updated, re-rending list");
+        //console.log("Motolist state has been updated, re-rending list");
     }, [motoList]);
 
     const toggleModal = () => {

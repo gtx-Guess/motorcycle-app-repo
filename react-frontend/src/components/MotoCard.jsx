@@ -6,7 +6,7 @@ const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
 const MotoCard = ({ props }) => {
     const [showError, setErrorState] = useState(false);
-    const [errorMessage, setErrorMessage] = useState();
+    const [errorMessage, setErrorMessage] = useState(null);
     const moto = props[0];
     const index = props[1];
     const getMotoData = props[2];
@@ -45,9 +45,17 @@ const MotoCard = ({ props }) => {
         if(updatedMotoData.year !== moto.year){reset = false};
         if(updatedMotoData.cc !== moto.cc){reset = false};
         if(!reset){
-            const resp = await axios.put(`${BASE_URL}/updateMoto`, updatedMotoData);
-            console.log(resp);
-            getMotoData();
+            try {
+                const resp = await axios.put(`${BASE_URL}/updateMoto`, updatedMotoData);
+                //console.log(resp);
+                getMotoData();
+            } catch (error) {
+                setErrorMessage('Motorcycle was not updated!');
+                setErrorState(true);
+                setTimeout(() => {
+                    setErrorState(false);
+                }, 3000);
+            };
         };
 
         const card = document.getElementById(`${moto.name}_${moto.id}_card`);
@@ -64,20 +72,22 @@ const MotoCard = ({ props }) => {
     const handleDeleteMotoBtn = async (event) => {
         const listItem = document.getElementById(moto.id);
         const cardItem = document.getElementById(`${moto.name}_${moto.id}_card`);
-        const resp = await axios.delete(`${BASE_URL}/deleteMoto/${moto.id}`);
-        if([200, 202, '200', '202'].includes(resp.status)){
+        try {
+            const resp = await axios.delete(`${BASE_URL}/deleteMoto/${moto.year}`);
+            //console.log(resp);
             listItem.remove();
             cardItem.remove();
             overLay.classList.toggle("hide");
             const nextCard = document.getElementsByClassName('card')[0];
             nextCard.classList.remove('hide-card');
-        }else{
+        } catch (error) {
             setErrorMessage('Motorcycle was not deleted!');
             setErrorState(true);
             setTimeout(() => {
                 setErrorState(false);
-            }, 5000);
+            }, 3000);
         };
+        return
     };
 
     return(

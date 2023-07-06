@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import database_queries
@@ -43,6 +43,11 @@ async def updateMotorcycle(data: dict):
 async def deleteMotorcycle(moto_id: int):
     print(f'got moto for deleteing: {moto_id}')
     resp = database_queries.delete_moto(moto_id)
+    if resp not in [200, 201, 202]:
+        raise HTTPException(
+            status_code=resp,
+            detail="nah fam"
+        )
     return resp
 
 
