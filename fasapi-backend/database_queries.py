@@ -48,7 +48,6 @@ def delete_moto(moto_id):
             )
             return 500
 
-
 def post_motorcycle(motorcycle):
     url = BASE_URL
     data = {
@@ -73,7 +72,6 @@ def post_motorcycle(motorcycle):
 
 def get_a_moto():
     url = f"{BASE_URL}?id=eq.3"
-
     try:
         resp = requests.get(url, headers=HEADERS)
         if resp.status_code == 200:
@@ -90,7 +88,6 @@ def get_a_moto():
 
 def get_all_motorcycles():
     url = f"{BASE_URL}?select=*"
-
     try:
         resp = requests.get(url, headers=HEADERS)
         if resp.status_code == 200:
