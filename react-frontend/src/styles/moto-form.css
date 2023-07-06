@@ -28,8 +28,8 @@ label {
 }
 .moto-form{
     font-size: 1.8rem;
-    position: absolute;
-    top: 75%;
+    position: fixed;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #f09999;

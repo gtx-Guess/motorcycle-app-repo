@@ -15,7 +15,7 @@ const Dropzone = ({ props }) => {
             setSuccess(true); 
             setTimeout(() => {
                 setSuccess(false);
-            }, 5000);
+            }, 3000);
         }, 2000);
 
     }, [setFiles, setCount]);

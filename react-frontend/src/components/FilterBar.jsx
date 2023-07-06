@@ -42,7 +42,7 @@ const FilterBar = ({ motoList }) => {
             setErrorState(true);
             setTimeout(() => {
                 setErrorState(false);
-            }, 6000);
+            }, 3000);
         }
     };
 
@@ -53,7 +53,7 @@ const FilterBar = ({ motoList }) => {
             setErrorState(true);
             setTimeout(() => {
                 setErrorState(false);
-            }, 6000);
+            }, 3000);
         };
         const hidden = document.querySelectorAll('li.hide');
         hidden.forEach((child) => {child.classList.remove('hide')});
