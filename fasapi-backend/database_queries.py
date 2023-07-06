@@ -1,12 +1,15 @@
 import requests
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-base_url = "https://wpddzvhmokvspeaundby.supabase.co/rest/v1/motorcycles"
-access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndwZGR6dmhtb2t2c3BlYXVuZGJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM2MDQxMDIsImV4cCI6MTk5OTE4MDEwMn0.hdQz4XWKv5lQ4ajjWV7bSLA7OZk-wbRnsALYg9BWMK4"
-headers = {"apikey": f"{access_token}", "Authorization": f"Bearer {access_token}"}
+BASE_URL = os.getenv("SUPA_BASE_URL")
+ACCESS_TOKEN = os.getenv("SUPA_ACCESS_TOKEN")
+HEADERS = {"apikey": f"{ACCESS_TOKEN}", "Authorization": f"Bearer {ACCESS_TOKEN}"}
 
 
 def update_moto(moto_data):
-    url = f"{base_url}?id=eq.{moto_data.get('id')}"
+    url = f"{BASE_URL}?id=eq.{moto_data.get('id')}"
     data = {}
     if moto_data.get('name'):
         data["name"] = moto_data.get('name')
@@ -19,7 +22,7 @@ def update_moto(moto_data):
     if moto_data.get('imageLink'):
         moto_data["imageLink"] = moto_data.get('imageLink')
     try:
-        resp = requests.patch(url, data=data, headers=headers)
+        resp = requests.patch(url, data=data, headers=HEADERS)
         if resp.status_code in [200, 201]:
             print(f"\n\nMotorcycle was updated! Moto id: {moto_data.get('id')}")
             return 200
@@ -32,9 +35,9 @@ def update_moto(moto_data):
 
 def delete_moto(moto_id):
     print(f'deleting moto: {moto_id}')
-    url = f"{base_url}?id=eq.{moto_id}"
+    url = f"{BASE_URL}?id=eq.{moto_id}"
     try:
-        resp = requests.delete(url, headers=headers)
+        resp = requests.delete(url, headers=HEADERS)
         if resp.status_code in [200, 201]:
             print(f"\n\nMotorcycle was deleted! Moto id: {moto_id}")
             return 200
@@ -45,9 +48,8 @@ def delete_moto(moto_id):
             )
             return 500
 
-
 def post_motorcycle(motorcycle):
-    url = base_url
+    url = BASE_URL
     data = {
         "name": motorcycle.name,
         "brand": motorcycle.brand,
@@ -56,7 +58,7 @@ def post_motorcycle(motorcycle):
         "imageLink": motorcycle.imageLink,
     }
     try:
-        resp = requests.post(url, data=data, headers=headers)
+        resp = requests.post(url, data=data, headers=HEADERS)
         if resp.status_code in [200, 201]:
             print(f"\n\nData from post_motorcycle func: {data}")
             return 200
@@ -69,10 +71,9 @@ def post_motorcycle(motorcycle):
 
 
 def get_a_moto():
-    url = f"{base_url}?id=eq.3"
-
+    url = f"{BASE_URL}?id=eq.3"
     try:
-        resp = requests.get(url, headers=headers)
+        resp = requests.get(url, headers=HEADERS)
         if resp.status_code == 200:
             return resp.json()
         elif resp.stauts_code == 401:
@@ -86,10 +87,9 @@ def get_a_moto():
 
 
 def get_all_motorcycles():
-    url = f"{base_url}?select=*"
-
+    url = f"{BASE_URL}?select=*"
     try:
-        resp = requests.get(url, headers=headers)
+        resp = requests.get(url, headers=HEADERS)
         if resp.status_code == 200:
             return resp.json()
         elif resp.stauts_code == 401:
