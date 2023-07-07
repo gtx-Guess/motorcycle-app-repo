@@ -40,6 +40,7 @@ const MotoCard = ({ props }) => {
             "year": parseInt(updatedYear),
             "cc": parseInt(updatedCC)
         };
+
         if(updatedMotoData.brand !== moto.brand){reset = false};
         if(updatedMotoData.name !== moto.name){reset = false};
         if(updatedMotoData.year !== moto.year){reset = false};
@@ -106,7 +107,7 @@ const MotoCard = ({ props }) => {
             </div>
             {showError && <ErrorBubble key={'ErrorBubble-MotoForm'} text={errorMessage}/>}
         </div>
-    )
+    );
 };
 
 export default MotoCard;
