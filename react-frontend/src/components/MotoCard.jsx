@@ -10,7 +10,7 @@ const MotoCard = ({ props }) => {
     const moto = props[0];
     const index = props[1];
     const getMotoData = props[2];
-    const S3_BASE_URL = "https://moto-pics.s3.us-west-1.amazonaws.com/";
+    const S3_BASE_URL = import.meta.env.VITE_S3_BASE_URL;
 
     const motoImageLink = S3_BASE_URL + moto.imageLink;
     const overLay = document.getElementById("overlay");
