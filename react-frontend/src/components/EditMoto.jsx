@@ -2,15 +2,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Dropzone from './Dropzone';
 
-const EditMoto = ({ moto }) => {
+const EditMoto = ({ props }) => {
+    const moto = props[0];
+    const setShowClose = props[1];
 
     const handleGearClick = (event) => {
+        setShowClose(true);
         const card = document.getElementById(`${moto.name}_${moto.id}_card`);
         card.classList.add('to-front');
         const overLay = document.getElementById('overlay');
         overLay.classList.remove('hide');
         const gear = document.getElementById(`${moto.id}-update-gear`);
-        gear.classList.add('block-click');
+        gear.classList.add('hide-edit-btns');
         const updateButtonsDiv = card.querySelector('#edit-buttons-div');
         updateButtonsDiv.classList.remove('hide-edit-btns');
         const brandSpan = document.getElementById(`${moto.id}-brand-value-span`);
@@ -23,6 +26,8 @@ const EditMoto = ({ moto }) => {
             const input = document.createElement('input');
             input.type = i < 2 ? 'text': 'number';
             input.placeholder = 'Current: ';
+            input.style.width = '170px';
+            input.style.marginLeft = i === 0 ? '20px' : i === 1 ? '20px' : i === 2 ? '32px' : '9px';
             input.placeholder += i === 0 ? brandSpan.innerHTML : i === 1 ? nameSpan.innerHTML : i === 2 ? yearSpan.innerHTML : ccSpan.innerHTML;
             inputs.push(input);
         };

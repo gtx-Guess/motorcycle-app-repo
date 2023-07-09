@@ -13,6 +13,7 @@ const Container = () => {
     const containerRef = useRef(null);
     const contBottom = useRef(null);
     const [motoList, motoSetter] = useState([]);
+    const styles = {userSelect: 'none'};
 
     const getMotoData = async () => {
         //console.log("getMotoData");
@@ -59,10 +60,11 @@ const Container = () => {
             <FilterBar key={'FilterBar'} motoList={motoList} />
             <MotoForm key={'MotoForm'} props={[toggleModal, getMotoData]} />
             <div id="container-bottom" className={"container-bottom"} ref={contBottom}>
-                <div>
+                <div style={styles}>
                     <ul id="left-list" className={"left_ul"}>
+                        <br/>
                         <MotorcycleList key={'MotorcycleList'} props={[motoList, contBottom]} />
-                    </ul><br />
+                    </ul><br/>
                     <button className={"add-moto-li"} onClick={toggleModal}>Add Moto</button>
                 </div>
                 {motoCardElements}

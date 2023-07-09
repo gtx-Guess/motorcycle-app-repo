@@ -28,10 +28,6 @@
     /* background-color: rgb(207, 237, 246);    
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); */
 }
-.add-delete-buttons {
-    margin-top: 10px;
-    position: sticky;
-}
 .add-moto-li{
     font-size: 20px;
     text-align: center;

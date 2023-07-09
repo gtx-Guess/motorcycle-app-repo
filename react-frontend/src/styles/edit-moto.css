@@ -54,3 +54,13 @@
 .block-click{
     pointer-events: none;
 }
+.x-btn {
+    color: #133a61;
+    font-size: 35px;
+}
+.x-btn:hover,
+.x-btn:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}

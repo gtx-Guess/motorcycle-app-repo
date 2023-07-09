@@ -11,6 +11,13 @@
     min-height: 80px;
     overflow: hidden;
     max-width: none;
+    user-select: none;
+}
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 22vw;
 }
 .buttons > *{
     margin: 15px;
@@ -42,13 +49,14 @@ div > label {
     padding-right: 12px;
 }
 .div-of-selects{
-    width: 600px;
+    width: 50vw;
     display: flex;
     justify-content: space-evenly;
-    height: fit-content;
+    height: 66px;
     padding: 6.4px 12px;
+    margin-left: 10vw;
     position: absolute;
-    right: 32vw;
+    align-items: center;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -57,6 +65,7 @@ div > label {
     border: none;
     background-color: #133a61;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 select{
     cursor: pointer;

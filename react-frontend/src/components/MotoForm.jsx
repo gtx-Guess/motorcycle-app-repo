@@ -106,7 +106,9 @@ const MotoForm = ({ props }) => {
                     <input type="number" onChange={handleChange} id='moto_year' placeholder='please type year...'/>
                     <input type="submit" value="Submit" onClick={motoFormSubmit}/>
                 </form>
-                <span className={"close"} onClick={toggleModal}>&times;</span>
+                <span className={"close"} onClick={() => (
+                    toggleModal(true), setCount(0), setFiles(null)
+                )}>&times;</span>
                 {showError && <ErrorBubble key={'ErrorBubble-MotoForm'} text={errorMessage}/>}
                 <div id='upload-box'>
                     <Dropzone key={'DropZone-motoForm'} props={[setFiles, count, setCount]}/>
