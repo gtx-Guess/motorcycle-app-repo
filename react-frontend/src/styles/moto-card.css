@@ -21,6 +21,7 @@
 }
 .cardSpan {
     font-weight: bolder;
+    user-select: none;
 }
 .card2 {
     background-color: #fff;
@@ -42,6 +43,7 @@
 img {
     width: 100%;
     height: auto;
+    user-select: none;
 }
 .hide-card{
     display: none;
