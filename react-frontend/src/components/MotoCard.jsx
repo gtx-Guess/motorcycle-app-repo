@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import EditMoto from "./EditMoto";
 import ErrorBubble from "./ErrorBubble";
+import UpdateDropzone from './UpdateDropzone';
+import Dropzone from './Dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
@@ -11,6 +13,10 @@ const MotoCard = ({ props }) => {
     const [errorMessage, setErrorMessage] = useState(null);
     const [showClose, setShowClose] = useState(false);
     const [showImageDropzone, setShowImageDropzone] = useState(false);
+
+    const [file, setFiles] = useState(null);
+    const [count, setCount] = useState(0);
+    
     const [isHovered, setIsHovered] = useState(false);
 
     const moto = props[0];
@@ -146,7 +152,11 @@ const MotoCard = ({ props }) => {
             <p><span className={"cardSpan"}>Year:</span> <span id={`${moto.id}-year-value-span`}>{moto.year}</span></p>
             <p><span className={"cardSpan"}>Engine:</span> <span id={`${moto.id}-cc-value-span`}>{moto.cc}</span> CC"s</p>
             <img id={`${moto.id}-image`} src={motoImageLink} alt={moto.name}/>
-            {showImageDropzone && <div style={{ backgroundImage: `url(${motoImageLink})` }} className={'dropzone-image-update'} id={`${moto.id}-image-dropzone`}><h1>drop yo image here</h1></div>}
+            {showImageDropzone && 
+                <div id='upload-box'>
+                    <Dropzone key={'DropZone-motoForm'} props={[setFiles, count, setCount, 'update-moto', moto, motoImageLink]}/>
+                </div>
+            }
             <div id={'edit-buttons-div'} className={"hide-edit-item edit-buttons-div"}>
                 <button className={"update-moto-btn"} onClick={handleUpdateMotoBtnClick}>Update</button>
                 <button className={"delete-moto-btn"} onClick={handleDeleteMotoBtn}>Delete Moto</button>
