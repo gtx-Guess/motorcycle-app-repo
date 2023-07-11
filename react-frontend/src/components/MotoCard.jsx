@@ -10,6 +10,7 @@ const MotoCard = ({ props }) => {
     const [showError, setErrorState] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [showClose, setShowClose] = useState(false);
+    const [showImageDropzone, setShowImageDropzone] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
     const moto = props[0];
@@ -52,10 +53,14 @@ const MotoCard = ({ props }) => {
             card.classList.toggle('to-front');
     
             const gear = document.getElementById(`${moto.id}-update-gear`);
-            gear.classList.toggle('hide-edit-btns');
+            gear.classList.toggle('hide-edit-item');
     
+            const img = document.getElementById(`${moto.id}-image`);
+            img.classList.remove('hide-edit-item');
+            setShowImageDropzone(false);
+
             const updateButtonsDiv = card.querySelector('#edit-buttons-div');
-            updateButtonsDiv.classList.toggle('hide-edit-btns');
+            updateButtonsDiv.classList.toggle('hide-edit-item');
             overLay.classList.toggle("hide");
             return;
         };
@@ -93,14 +98,19 @@ const MotoCard = ({ props }) => {
             };
         };
 
+        setShowClose(false);
         const card = document.getElementById(`${moto.name}_${moto.id}_card`);
         card.classList.toggle('to-front');
 
         const gear = document.getElementById(`${moto.id}-update-gear`);
-        gear.classList.toggle('hide-edit-btns');
+        gear.classList.toggle('hide-edit-item');
+
+        const img = document.getElementById(`${moto.id}-image`);
+        img.classList.remove('hide-edit-item');
+        setShowImageDropzone(false);
 
         const updateButtonsDiv = card.querySelector('#edit-buttons-div');
-        updateButtonsDiv.classList.toggle('hide-edit-btns');
+        updateButtonsDiv.classList.toggle('hide-edit-item');
         overLay.classList.toggle("hide");
     };
 
@@ -108,7 +118,7 @@ const MotoCard = ({ props }) => {
         const listItem = document.getElementById(moto.id);
         const cardItem = document.getElementById(`${moto.name}_${moto.id}_card`);
         try {
-            const resp = await axios.delete(`${BASE_URL}/deleteMoto/${moto.year}`);
+            const resp = await axios.delete(`${BASE_URL}/deleteMoto/${moto.id}`);
             //console.log(resp);
             listItem.remove();
             cardItem.remove();
@@ -129,14 +139,15 @@ const MotoCard = ({ props }) => {
         <div className={index === 0 ? "card" : "card hide-card"} id={`${moto.name}_${moto.id}_card`}>
             <div className={"edit-top-div"}>
                 <p className={'edit-moto-brand-p-tag'}><span className={"cardSpan"}>Brand:</span> <span id={`${moto.id}-brand-value-span`}>{moto.brand}</span></p>
-                <EditMoto props={[moto, setShowClose]}/>
+                <EditMoto props={[moto, setShowClose, setShowImageDropzone]}/>
                 { showClose &&  <FontAwesomeIcon id={"fa-x-btn"} className={"x-btn"} icon={faX} onClick={() => resetMotoHtmlValues(showClose)}/>}
             </div>
             <p><span className={"cardSpan"}>Name:</span> <span id={`${moto.id}-name-value-span`}>{moto.name}</span></p>
             <p><span className={"cardSpan"}>Year:</span> <span id={`${moto.id}-year-value-span`}>{moto.year}</span></p>
             <p><span className={"cardSpan"}>Engine:</span> <span id={`${moto.id}-cc-value-span`}>{moto.cc}</span> CC"s</p>
-            <img src={motoImageLink} alt={moto.name}/>
-            <div id={'edit-buttons-div'} className={"hide-edit-btns edit-buttons-div"}>
+            <img id={`${moto.id}-image`} src={motoImageLink} alt={moto.name}/>
+            {showImageDropzone && <div style={{ backgroundImage: `url(${motoImageLink})` }} className={'dropzone-image-update'} id={`${moto.id}-image-dropzone`}><h1>drop yo image here</h1></div>}
+            <div id={'edit-buttons-div'} className={"hide-edit-item edit-buttons-div"}>
                 <button className={"update-moto-btn"} onClick={handleUpdateMotoBtnClick}>Update</button>
                 <button className={"delete-moto-btn"} onClick={handleDeleteMotoBtn}>Delete Moto</button>
             </div>
