@@ -111,7 +111,7 @@ const MotoForm = ({ props }) => {
                 )}>&times;</span>
                 {showError && <ErrorBubble key={'ErrorBubble-MotoForm'} text={errorMessage}/>}
                 <div id='upload-box'>
-                    <Dropzone key={'DropZone-motoForm'} props={[setFiles, count, setCount]}/>
+                    <Dropzone key={'DropZone-motoForm'} props={[setFiles, count, setCount, 'create-moto']}/>
                 </div>
             </div>
         </div>

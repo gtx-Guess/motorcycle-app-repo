@@ -10,6 +10,8 @@ import "./styles/filter-bar.css";
 import "./styles/moto-form.css";
 import "./styles/moto-card.css";
 import "./styles/edit-moto.css";
+import './styles/dropzone.css'
+import "./styles/update-dropzone.css"
 
 const App = () => {
     const removeClass = document.querySelectorAll('to-front');
