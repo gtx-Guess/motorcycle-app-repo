@@ -5,6 +5,7 @@ import Dropzone from './Dropzone';
 const EditMoto = ({ props }) => {
     const moto = props[0];
     const setShowClose = props[1];
+    const setShowImageDropzone = props[2];
 
     const handleGearClick = (event) => {
         setShowClose(true);
@@ -13,13 +14,26 @@ const EditMoto = ({ props }) => {
         const overLay = document.getElementById('overlay');
         overLay.classList.remove('hide');
         const gear = document.getElementById(`${moto.id}-update-gear`);
-        gear.classList.add('hide-edit-btns');
+        gear.classList.add('hide-edit-item');
         const updateButtonsDiv = card.querySelector('#edit-buttons-div');
-        updateButtonsDiv.classList.remove('hide-edit-btns');
+        updateButtonsDiv.classList.remove('hide-edit-item');
         const brandSpan = document.getElementById(`${moto.id}-brand-value-span`);
         const nameSpan = document.getElementById(`${moto.id}-name-value-span`);
         const yearSpan = document.getElementById(`${moto.id}-year-value-span`);
         const ccSpan = document.getElementById(`${moto.id}-cc-value-span`);
+
+
+
+        //image stuff
+        const img = document.getElementById(`${moto.id}-image`);
+        const imageDropzone = document.getElementById(`${moto.id}-image`);
+        img.classList.add('hide-edit-item');
+        setShowImageDropzone(true);
+
+        //image stuff end
+
+
+
 
         let inputs = [];
         for(let i = 0; i < 4; i++){

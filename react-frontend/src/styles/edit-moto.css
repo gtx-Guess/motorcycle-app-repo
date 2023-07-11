@@ -48,7 +48,7 @@
     background-color: #f44336;
     transition: all .4s ease-in-out;
 }
-.hide-edit-btns{
+.hide-edit-item{
     display: none;
 }
 .block-click{
@@ -64,3 +64,21 @@
     text-decoration: none;
     cursor: pointer;
 }
+.dropzone-image-update{
+    display: flex;
+    height: 50vh;
+    border: 4px dashed black;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: filter 0.3s ease;
+}
+.dropzone-image-update:hover:not(h1){
+    cursor: pointer;
+    filter: brightness(50%);
+}
+.dropzone-image-update > h1 {
+    background-color: white;
+  }
