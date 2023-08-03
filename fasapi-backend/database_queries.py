@@ -1,5 +1,7 @@
 import requests
 import os
+import json
+from py_utils import get_moto_spec_data
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -20,7 +22,7 @@ def update_moto(moto_data):
     if moto_data.get('year'):
         data["year"] = moto_data.get('year')
     if moto_data.get('imageLink'):
-        moto_data["imageLink"] = moto_data.get('imageLink')
+        data["imageLink"] = moto_data.get('imageLink')
     try:
         resp = requests.patch(url, data=data, headers=HEADERS)
         if resp.status_code in [200, 201]:
@@ -48,7 +50,7 @@ def delete_moto(moto_id):
             )
             return 500
 
-def post_motorcycle(motorcycle):
+def create_motorcycle(motorcycle):
     url = BASE_URL
     data = {
         "name": motorcycle.name,
@@ -57,10 +59,12 @@ def post_motorcycle(motorcycle):
         "year": motorcycle.year,
         "imageLink": motorcycle.imageLink,
     }
+    spec_data = get_moto_spec_data(moto_params={"make": data["brand"], "model": data["name"]})
+    if spec_data: data["data"] = str(spec_data)
     try:
         resp = requests.post(url, data=data, headers=HEADERS)
         if resp.status_code in [200, 201]:
-            print(f"\n\nData from post_motorcycle func: {data}")
+            print(f"\n\nData from create_motorcycle func: {data}")
             return 200
     except Exception as e:
         if type(e) == requests.exceptions.ConnectionError:

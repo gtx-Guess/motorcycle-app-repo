@@ -34,26 +34,20 @@ def home():
     return "This is home page"
 
 @app.put('/api/updateMoto')
-async def updateMotorcycle(data: dict):
-    print(data["id"])
+async def update_motorcycle(data: dict):
     resp = database_queries.update_moto(data)
     return resp
 
 @app.delete("/api/deleteMoto/{moto_id}")
-async def deleteMotorcycle(moto_id: int):
+async def delete_motorcycle(moto_id: int):
     print(f'got moto for deleteing: {moto_id}')
     resp = database_queries.delete_moto(moto_id)
-    if resp not in [200, 201, 202]:
-        raise HTTPException(
-            status_code=resp,
-            detail="nah fam"
-        )
     return resp
 
 
 @app.post("/api/createMoto")
 async def form_submission(moto: Motorcycle):
-    resp = database_queries.post_motorcycle(moto)
+    resp = database_queries.create_motorcycle(moto)
     if resp == 200:
         data = {"response": "Successful post", "status_code": 200}
     else:
@@ -66,11 +60,21 @@ async def get_all_motos():
     resp = database_queries.get_all_motorcycles()
     return resp
 
-
 # @app.get("/api/getMoto")
 # async def get_specific_moto():
 #     resp = database_queries.get_a_moto()
 #     return resp[0]
 
+
+# this is the data var
+# data = {
+#     "hp": "",
+#     "dry": "",
+#     "top": "",
+#     "wet": "",
+#     "seat": "",
+#     "time": "",
+#     "torque": ""
+# }
 
 # python3 -m uvicorn fast_api:app --reload

@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import Dropzone from './Dropzone';
 
 const EditMoto = ({ props }) => {
     const moto = props[0];
@@ -22,18 +21,11 @@ const EditMoto = ({ props }) => {
         const yearSpan = document.getElementById(`${moto.id}-year-value-span`);
         const ccSpan = document.getElementById(`${moto.id}-cc-value-span`);
 
-
-
         //image stuff
         const img = document.getElementById(`${moto.id}-image`);
-        const imageDropzone = document.getElementById(`${moto.id}-image`);
         img.classList.add('hide-edit-item');
         setShowImageDropzone(true);
-
         //image stuff end
-
-
-
 
         let inputs = [];
         for(let i = 0; i < 4; i++){

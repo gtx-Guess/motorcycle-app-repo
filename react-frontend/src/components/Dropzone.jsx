@@ -8,7 +8,6 @@ const Dropzone = ({ props }) => {
     const setCount = props[2];
     const zoneType = props[3];
     const moto = props[4];
-    const motoImageLink = props[5];
 
     const onDrop = useCallback((acceptedFile) => {
         setFiles(acceptedFile[0]);
@@ -31,9 +30,9 @@ const Dropzone = ({ props }) => {
     });
 
     return (
-        <form className={'dropZoneForm'}>
-            {zoneType === 'update-moto' &&
-                <div style={{ backgroundImage: `url(${motoImageLink})` }} className={'dropzone-image-update'} id={`${moto.id}-image-dropzone`}>
+        <form id={ zoneType === 'create-moto' ? 'add-moto-dropzone' : `${moto.id}-image-update-dropzone`} className={zoneType === 'create-moto' ? 'dropZoneForm' : 'dropzone-image-update'} >
+            {/* {zoneType === 'update-moto' &&
+                <div >
                     <p>what up what uppppp</p>
                 </div>
             }
@@ -48,12 +47,21 @@ const Dropzone = ({ props }) => {
                             <p>Drag and drop the motorcycle picture here, or click to select file</p>
                         )}
                 </div>
-            }
+            } */}
+            <div {...getRootProps({
+                className: 'input-area'
+            })}>
+                <input {...getInputProps()} />
+                    {isDragActive ? (
+                        <p>Drop the motorcycle picture here...</p>
+                    ) : (
+                        <p style={{width: '60%'}}>Drag and drop the motorcycle picture here, or click to select file</p>
+                    )}
+            </div>
             <p>File Count: {count}</p>
             {success &&
                     <div id='success-message' className={'success-message'}>File was uploaded!</div>
             }
-
         </form>
     );
 }

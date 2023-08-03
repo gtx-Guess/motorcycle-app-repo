@@ -30,11 +30,22 @@ ul{
 .success-message{
     display: flex;
     width: fit-content;
-    position: absolute;
-    top: 10%;
-    left: 30%;
-    padding: 5%;
+    position: fixed;
+    top: 2%;
+    left: 65%;
+    padding: 2%;
     border-radius: 20px;
     background: rgb(30, 255, 0);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}
+.dropzone-image-update{
+    font-size: 1.5rem;
+    text-align: center;
+    max-width: unset;
+    height: 50vh;
+    border: 4px dashed black;
+}
+.dropzone-image-update > div:hover:not(#success-message){
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.166);
 }
