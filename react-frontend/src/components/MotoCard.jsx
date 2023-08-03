@@ -1,40 +1,33 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import EditMoto from "./EditMoto";
 import ErrorBubble from "./ErrorBubble";
-import UpdateDropzone from './UpdateDropzone';
 import Dropzone from './Dropzone';
+import { sendBinaryStringObjectToS3 } from '../utils/helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
 
 const MotoCard = ({ props }) => {
+    const moto = props[0];
+    const index = props[1];
+    const getMotoData = props[2];
     const [showError, setErrorState] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [showClose, setShowClose] = useState(false);
     const [showImageDropzone, setShowImageDropzone] = useState(false);
+    const cardRef = useRef(null);
 
+
+    //image stuff
+    const S3_BASE_URL = import.meta.env.VITE_S3_BASE_URL;
+    const initialImageLink = S3_BASE_URL + moto.imageLink;
+    const [imageSrc, setImageSrc] = useState(initialImageLink);
     const [file, setFiles] = useState(null);
     const [count, setCount] = useState(0);
-    
-    const [isHovered, setIsHovered] = useState(false);
+    //
 
-    const moto = props[0];
-    const index = props[1];
-    const getMotoData = props[2];
-    const S3_BASE_URL = import.meta.env.VITE_S3_BASE_URL;
-
-    const motoImageLink = S3_BASE_URL + moto.imageLink;
     const overLay = document.getElementById("overlay");
-
-
-    const handleMouseEnter = () => {
-      setIsHovered(true);
-    };
-  
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-    };
 
     const resetMotoHtmlValues = (closeBtn=false) => {
         const brandSpan = document.getElementById(`${moto.id}-brand-value-span`);
@@ -68,6 +61,8 @@ const MotoCard = ({ props }) => {
             const updateButtonsDiv = card.querySelector('#edit-buttons-div');
             updateButtonsDiv.classList.toggle('hide-edit-item');
             overLay.classList.toggle("hide");
+            setFiles(null);
+            setCount(0);
             return;
         };
         
@@ -90,6 +85,15 @@ const MotoCard = ({ props }) => {
         if(updatedMotoData.name !== moto.name){reset = false};
         if(updatedMotoData.year !== moto.year){reset = false};
         if(updatedMotoData.cc !== moto.cc){reset = false};
+        if(file){
+            reset = false
+            const formData = new FormData();
+            formData.append('file', file, file.name);
+            const blobFile = new Blob([file], { type: 'image/jpeg' });
+            await sendBinaryStringObjectToS3(blobFile, file.name);
+            updatedMotoData.imageLink = file.name;
+            setImageSrc(S3_BASE_URL + file.name);
+        };
         if(!reset){
             try {
                 const resp = await axios.put(`${BASE_URL}/updateMoto`, updatedMotoData);
@@ -114,6 +118,8 @@ const MotoCard = ({ props }) => {
         const img = document.getElementById(`${moto.id}-image`);
         img.classList.remove('hide-edit-item');
         setShowImageDropzone(false);
+        setFiles(null);
+        setCount(0);
 
         const updateButtonsDiv = card.querySelector('#edit-buttons-div');
         updateButtonsDiv.classList.toggle('hide-edit-item');
@@ -122,9 +128,9 @@ const MotoCard = ({ props }) => {
 
     const handleDeleteMotoBtn = async (event) => {
         const listItem = document.getElementById(moto.id);
-        const cardItem = document.getElementById(`${moto.name}_${moto.id}_card`);
+        const cardItem = cardRef.current
         try {
-            const resp = await axios.delete(`${BASE_URL}/deleteMoto/${moto.id}`);
+            await axios.delete(`${BASE_URL}/deleteMoto/${moto.id}`);
             //console.log(resp);
             listItem.remove();
             cardItem.remove();
@@ -142,7 +148,7 @@ const MotoCard = ({ props }) => {
     };
 
     return(
-        <div className={index === 0 ? "card" : "card hide-card"} id={`${moto.name}_${moto.id}_card`}>
+        <div className={index === 0 ? "card" : "card hide-card"} id={`${moto.name}_${moto.id}_card`} ref={cardRef}>
             <div className={"edit-top-div"}>
                 <p className={'edit-moto-brand-p-tag'}><span className={"cardSpan"}>Brand:</span> <span id={`${moto.id}-brand-value-span`}>{moto.brand}</span></p>
                 <EditMoto props={[moto, setShowClose, setShowImageDropzone]}/>
@@ -151,11 +157,9 @@ const MotoCard = ({ props }) => {
             <p><span className={"cardSpan"}>Name:</span> <span id={`${moto.id}-name-value-span`}>{moto.name}</span></p>
             <p><span className={"cardSpan"}>Year:</span> <span id={`${moto.id}-year-value-span`}>{moto.year}</span></p>
             <p><span className={"cardSpan"}>Engine:</span> <span id={`${moto.id}-cc-value-span`}>{moto.cc}</span> CC"s</p>
-            <img id={`${moto.id}-image`} src={motoImageLink} alt={moto.name}/>
+            <img id={`${moto.id}-image`} src={imageSrc} alt={moto.name}/>
             {showImageDropzone && 
-                <div id='upload-box'>
-                    <Dropzone key={'DropZone-motoForm'} props={[setFiles, count, setCount, 'update-moto', moto, motoImageLink]}/>
-                </div>
+                    <Dropzone key={'DropZone-updateForm'} props={[setFiles, count, setCount, 'update-moto', moto]}/>
             }
             <div id={'edit-buttons-div'} className={"hide-edit-item edit-buttons-div"}>
                 <button className={"update-moto-btn"} onClick={handleUpdateMotoBtnClick}>Update</button>
