@@ -3,6 +3,7 @@ html{
   overflow-x: hidden;
   background-image: url("../static/asphalt_background.jpeg");
   background-color: rgb(48, 48, 48);
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;

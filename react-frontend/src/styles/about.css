@@ -1,0 +1,27 @@
+#about{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 80vw;
+    margin-left: 10%;
+    margin-bottom: 10vh;
+    overflow: hidden;
+}
+#about > div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#about > div > div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.ssImgBase{
+    width: auto;
+    height: auto;
+    padding: 10px;
+}
+#about > div > div > p{
+    padding-right: 10px;
+}
