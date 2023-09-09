@@ -11,10 +11,7 @@ import "./styles/moto-form.css";
 import "./styles/moto-card.css";
 import "./styles/edit-moto.css";
 import './styles/dropzone.css'
-<<<<<<< HEAD
-=======
-import './styles/about.css'
->>>>>>> Dev
+import './styles/about.css';
 
 const App = () => {
     const removeClass = document.querySelectorAll('to-front');
